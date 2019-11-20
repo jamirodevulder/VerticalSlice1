@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class PauseButton : UIScript
 {
-    //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
+    public bool unpaused = true; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
+    private GameObject levelSelectGO;
+
     private void Awake()
     {
+        levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject 
+        levelSelectGO.SetActive(false);
         clickableButton = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonText = GetComponentInChildren<Text>();
@@ -22,6 +26,7 @@ public class PauseButton : UIScript
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
         }
     }
+
     private void OnButtonClick()
     {
         switch (unpaused)
@@ -31,6 +36,7 @@ public class PauseButton : UIScript
                 Time.timeScale = 0; //Zet op pause
                 buttonText.text = "Spel hervatten";
                 clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f,mainCamera.transform.position.y + 1,0); //Z positie wordt anders -400
+                levelSelectGO.SetActive(true);
                 break;
 
             case false:
@@ -38,6 +44,7 @@ public class PauseButton : UIScript
                 Time.timeScale = 1; //Zet weer aan
                 buttonText.text = "Pauzeren";
                 clickableButton.transform.position = returnPosition;
+                levelSelectGO.SetActive(false);
                 break;
         }
     }
