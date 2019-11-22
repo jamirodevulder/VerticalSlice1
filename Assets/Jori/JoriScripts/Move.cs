@@ -7,6 +7,5 @@ public class Move : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector3.right * Time.deltaTime);
-        Debug.Log("Update");
     }
 }

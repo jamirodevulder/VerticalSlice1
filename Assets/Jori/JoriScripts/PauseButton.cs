@@ -26,7 +26,7 @@ public class PauseButton : UIScript
         mainCamera = FindObjectOfType<Camera>();
         transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 4.7f,0); //Zet in de hoek
         returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop
-        //Voor de restartknop
+        //Voor als het spel herstart wordt
         unpaused = true;
         Time.timeScale = 1;
     }
@@ -41,6 +41,7 @@ public class PauseButton : UIScript
         if (unpaused)
         {
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
+            resizeButton(160,30);
         }
     }
 
@@ -51,8 +52,9 @@ public class PauseButton : UIScript
             case true:
                 unpaused = false;
                 Time.timeScale = 0; //Zet op pause
-                buttonText.text = "Spel hervatten";
-                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f,mainCamera.transform.position.y + 1,0); //Z positie wordt anders -400
+                buttonText.text = "Hervat";
+                resizeButton(35, 22);
+                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7f,mainCamera.transform.position.y,0); //Z positie wordt anders -400
                 levelSelectGO.SetActive(true);
                 menuKnopGO.SetActive(true);
                 restartKnopGO.SetActive(true);
@@ -63,10 +65,16 @@ public class PauseButton : UIScript
                 Time.timeScale = 1; //Hervat spel
                 buttonText.text = "Pauzeren";
                 clickableButton.transform.position = returnPosition;
+                resizeButton(160, 30);
                 levelSelectGO.SetActive(false);
                 menuKnopGO.SetActive(false);
                 restartKnopGO.SetActive(false);
                 break;
         }
+    }
+
+    void resizeButton(float x, float y)
+    {
+        clickableButton.GetComponent<RectTransform>().sizeDelta = new Vector2(x,y);
     }
 }

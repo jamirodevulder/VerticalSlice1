@@ -8,10 +8,10 @@ public class LevelSelect : UIScript
 {
     private void Awake()
     {
-        GetComponentInChildren<Button>().onClick.AddListener(LevelSelectClicked);   
+        GetComponentInChildren<Button>().onClick.AddListener(LevelSelectClicked);
         clickableButton = GetComponentInChildren<Button>();
         mainCamera = FindObjectOfType<Camera>();
-        clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y - 1, mainCamera.transform.position.z + 10);
+        clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y, mainCamera.transform.position.z + 10);
     }
 
     void LevelSelectClicked()
