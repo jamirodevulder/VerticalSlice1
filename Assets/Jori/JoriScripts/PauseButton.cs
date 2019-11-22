@@ -9,6 +9,7 @@ public class PauseButton : UIScript
     private GameObject levelSelectGO; //levelSelectGameObject
     private GameObject menuKnopGO; //menuKnopGameObject
     private GameObject restartKnopGO; //restartKnopGameObject
+    private GameObject muteKnopGO; //muteKnopGameObject
 
     private void Awake()
     {   //LevelSelectButton gerelateerde code
@@ -17,6 +18,8 @@ public class PauseButton : UIScript
         menuKnopGO = GameObject.Find("MKGameObject");
         //RestartKnop gerelateerde code
         restartKnopGO = GameObject.Find("RKGameObject");
+        //MuteKnop gerelateerde code
+        muteKnopGO = GameObject.Find("MuteKnopGameObject");
         //PauzeButton gerelateerde code
         clickableButton = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
@@ -35,6 +38,7 @@ public class PauseButton : UIScript
         levelSelectGO.SetActive(false);
         menuKnopGO.SetActive(false);
         restartKnopGO.SetActive(false);
+        muteKnopGO.SetActive(false);
     }
     private void Update()
     {
@@ -58,6 +62,8 @@ public class PauseButton : UIScript
                 levelSelectGO.SetActive(true);
                 menuKnopGO.SetActive(true);
                 restartKnopGO.SetActive(true);
+                muteKnopGO.SetActive(true);
+                
                 break;
 
             case false:
@@ -69,6 +75,7 @@ public class PauseButton : UIScript
                 levelSelectGO.SetActive(false);
                 menuKnopGO.SetActive(false);
                 restartKnopGO.SetActive(false);
+                muteKnopGO.SetActive(false);
                 break;
         }
     }
