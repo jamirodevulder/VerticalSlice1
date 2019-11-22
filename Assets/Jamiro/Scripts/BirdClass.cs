@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BirdClass : MonoBehaviour
 {
-    [SerializeField] private GameObject[] dots = new GameObject[3];
-    private bool stoptrail = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +15,11 @@ public class BirdClass : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeSprite(Sprite ImageToChangeTo)
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = ImageToChangeTo;
     }
 
 }
