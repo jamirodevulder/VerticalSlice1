@@ -15,7 +15,7 @@ public class bird : BirdClass
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpringJoint2D sj;
     [SerializeField] private Rigidbody2D slingRb;
-    [SerializeField] private GameObject bird1;
+ 
 
     
 

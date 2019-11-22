@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionForce : MonoBehaviour
+public class ExplosionForce : BirdClass
 {
     [SerializeField] private float radius = 5.0F; // zorgt voor radius waar hij objecten aantast
     [SerializeField] private float power = 10.0F; // zorgt voor explosie power
@@ -14,7 +14,7 @@ public class ExplosionForce : MonoBehaviour
     [SerializeField] private bool canExplode = true; // kijk of hij objecten nog aangetast kunnen worden
     [SerializeField] private bool playTimer = true; // kijkt of hij klaar is met audio spelen
     [SerializeField] private bool startTimer = true; // kijkt of hij de audio mag spelen of gelijk moet exploderen
-    [SerializeField] private ParticleSystem boomParticles;
+    [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
     Rigidbody2D rb;
@@ -23,6 +23,7 @@ public class ExplosionForce : MonoBehaviour
     private void Start()
     {
         playerRb.AddForce(new Vector2(300*playerRb.mass,45*playerRb.mass));
+        
     }
 
     void Update() 
@@ -36,6 +37,7 @@ public class ExplosionForce : MonoBehaviour
             {
             playTimer = false;
             StartCoroutine(ExplosionTimer());
+
             }
     }
 
@@ -59,6 +61,7 @@ public class ExplosionForce : MonoBehaviour
             explosieAudio.clip = explosieTimer;
             explosieAudio.Play();
             yield return new WaitForSeconds(explosieAudio.clip.length);
+          
             playTimer = false;
 
         }
@@ -75,7 +78,9 @@ public class ExplosionForce : MonoBehaviour
             AddExplosionForce(rb, power, transform.position, radius);
         }
         canExplode = false;
-        boomParticles.Play();
+        particleHandler.GetComponent<particleSystemPlayScript>().playParticle();
+        
+        onDestroy();
     }
 
     void AddExplosionForce(Rigidbody2D rb,float explosionForce, Vector2 explodingPosition, float radius, float upwardsModifier = 0.0f, ForceMode2D mode = ForceMode2D.Impulse)
@@ -83,7 +88,7 @@ public class ExplosionForce : MonoBehaviour
 
         if (canExplode == true)
         {
-            explosieAudio.clip = explosie;
+            
             Vector2 explodingDirection = rb.position - explodingPosition;
             float explodingDistance = explodingDirection.magnitude;
             explosieAudio.Play();

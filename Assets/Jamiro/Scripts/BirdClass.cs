@@ -22,4 +22,14 @@ public class BirdClass : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = ImageToChangeTo;
     }
 
+
+    public void checkForDelete()
+    {
+        
+    }
+    public void onDestroy()
+    {
+        Destroy(gameObject);
+    }
+
 }

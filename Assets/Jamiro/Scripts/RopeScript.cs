@@ -6,11 +6,13 @@ public class RopeScript : MonoBehaviour
 {
     [SerializeField] GameObject firstLine;
     [SerializeField] GameObject secondLine;
+    [SerializeField] GameObject[] birds;
  
 
     private LineRenderer line1;
     private LineRenderer line2;
     private Vector2 middleRange;
+    private int birdIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,24 @@ public class RopeScript : MonoBehaviour
         setlinePostions(middleRange);
     }
 
-    
+
+    void Update()
+    {
+
+        if(birds[birdIndex] == null && birdIndex < birds.Length - 1)
+        {
+            birdIndex++;
+            newBird();
+        }
+
+
+
+
+
+
+
+    }
+
     public void DrawLines()
     {
             Vector2 mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -49,5 +68,17 @@ public class RopeScript : MonoBehaviour
     public void returnLines()
     {
         setlinePostions(middleRange);
-    }   
+    }
+
+    private void newBird()
+    {
+        birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, 0f);
+
+        birds[birdIndex].GetComponentInChildren<bird>().enabled = true;
+        birds[birdIndex].GetComponentInChildren<SpringJoint2D>().enabled = true;
+        birds[birdIndex].GetComponentInChildren<SpringJoint2D>().connectedBody = GameObject.Find("middelpunt").GetComponent<Rigidbody2D>();
+        birds[birdIndex].GetComponentInChildren<ExplosionForce>().enabled = true;
+
+    }
+
 }
