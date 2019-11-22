@@ -6,18 +6,28 @@ using UnityEngine.UI;
 public class PauseButton : UIScript
 {
     public bool unpaused = true; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
-    private GameObject levelSelectGO;
+    private GameObject levelSelectGO; //levelSelectGameObject
+    private GameObject menuKnopGO; //menuKnopGameObject
 
     private void Awake()
-    {
+    {   //LevelSelectButton gerelateerde code
         levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject 
-        levelSelectGO.SetActive(false);
+        //Menuknop gerelateerde code
+        menuKnopGO = GameObject.Find("MKGameObject");
+        //PauzeButton gerelateerde code
         clickableButton = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonText = GetComponentInChildren<Text>();
         buttonText.text = "Pauzeren";
+        //PauzeButton-positie gerelateerde code
         mainCamera = FindObjectOfType<Camera>();
+        transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 4.7f,0); //Zet in de hoek
         returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop
+    }
+    private void Start()
+    {
+        levelSelectGO.SetActive(false);
+        menuKnopGO.SetActive(false);
     }
     private void Update()
     {
@@ -37,14 +47,16 @@ public class PauseButton : UIScript
                 buttonText.text = "Spel hervatten";
                 clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f,mainCamera.transform.position.y + 1,0); //Z positie wordt anders -400
                 levelSelectGO.SetActive(true);
+                menuKnopGO.SetActive(true);
                 break;
 
             case false:
                 unpaused = true;
-                Time.timeScale = 1; //Zet weer aan
+                Time.timeScale = 1; //Hervat spel
                 buttonText.text = "Pauzeren";
                 clickableButton.transform.position = returnPosition;
                 levelSelectGO.SetActive(false);
+                menuKnopGO.SetActive(false);
                 break;
         }
     }
