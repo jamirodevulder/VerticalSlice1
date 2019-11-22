@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class PauseButton : UIScript
 {
-    public bool unpaused = true; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
+    public bool unpaused; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
     private GameObject levelSelectGO; //levelSelectGameObject
     private GameObject menuKnopGO; //menuKnopGameObject
+    private GameObject restartKnopGO; //restartKnopGameObject
 
     private void Awake()
     {   //LevelSelectButton gerelateerde code
         levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject 
         //Menuknop gerelateerde code
         menuKnopGO = GameObject.Find("MKGameObject");
+        //RestartKnop gerelateerde code
+        restartKnopGO = GameObject.Find("RKGameObject");
         //PauzeButton gerelateerde code
         clickableButton = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
@@ -23,11 +26,15 @@ public class PauseButton : UIScript
         mainCamera = FindObjectOfType<Camera>();
         transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 4.7f,0); //Zet in de hoek
         returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop
+        //Voor de restartknop
+        unpaused = true;
+        Time.timeScale = 1;
     }
     private void Start()
     {
         levelSelectGO.SetActive(false);
         menuKnopGO.SetActive(false);
+        restartKnopGO.SetActive(false);
     }
     private void Update()
     {
@@ -48,6 +55,7 @@ public class PauseButton : UIScript
                 clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f,mainCamera.transform.position.y + 1,0); //Z positie wordt anders -400
                 levelSelectGO.SetActive(true);
                 menuKnopGO.SetActive(true);
+                restartKnopGO.SetActive(true);
                 break;
 
             case false:
@@ -57,6 +65,7 @@ public class PauseButton : UIScript
                 clickableButton.transform.position = returnPosition;
                 levelSelectGO.SetActive(false);
                 menuKnopGO.SetActive(false);
+                restartKnopGO.SetActive(false);
                 break;
         }
     }

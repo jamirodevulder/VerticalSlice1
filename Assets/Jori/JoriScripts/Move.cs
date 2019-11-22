@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    void Update()
+    private void Update()
     {
         transform.Translate(Vector3.right * Time.deltaTime);
+        Debug.Log("Update");
     }
 }
