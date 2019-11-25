@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    private ScoreScript scoreScript;
+    [SerializeField] private ScoreScript scoreScript;
     private Sprite enemy;
     
     private void Awake()
@@ -14,7 +14,7 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime);
+        transform.Translate(Vector3.right * Time.deltaTime); // Beweegt naar rechts
         if(Input.GetKeyDown(KeyCode.W))
         {
             scoreScript.AddScore(10);
