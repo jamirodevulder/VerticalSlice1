@@ -24,7 +24,7 @@ public class PauseButton : UIScript
         clickableButton = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonText = GetComponentInChildren<Text>();
-        buttonText.text = "Pauzeren";
+        buttonText.text = "";
         //PauzeButton-positie gerelateerde code
         mainCamera = FindObjectOfType<Camera>();
         transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 4.7f,0); //Zet in de hoek
@@ -56,7 +56,7 @@ public class PauseButton : UIScript
             case true:
                 unpaused = false;
                 Time.timeScale = 0; //Zet op pause
-                buttonText.text = "Hervat";
+                buttonText.text = "";
                 resizeButton(35, 22);
                 clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7f,mainCamera.transform.position.y,0); //Z positie wordt anders -400
                 levelSelectGO.SetActive(true);
@@ -69,7 +69,7 @@ public class PauseButton : UIScript
             case false:
                 unpaused = true;
                 Time.timeScale = 1; //Hervat spel
-                buttonText.text = "Pauzeren";
+                buttonText.text = "";
                 clickableButton.transform.position = returnPosition;
                 resizeButton(160, 30);
                 levelSelectGO.SetActive(false);
