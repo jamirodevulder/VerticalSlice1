@@ -91,13 +91,13 @@ public class bird : BirdClass
     private IEnumerator Release()
     {
         yield return new WaitForSeconds(releaseDelay);
-        
         sj.enabled = false;
         shot = false;
-
-
-
         
-        
+
+
+
+
+
     }
 }

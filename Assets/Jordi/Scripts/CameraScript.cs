@@ -27,6 +27,10 @@ public class CameraScript : MonoBehaviour
         {
             StartCoroutine(MoveToFort());
         }
+        if (Input.GetKeyUp(Constante.q))
+        {
+            StartCoroutine(MoveToBird());
+        }
     }
 
 
@@ -47,11 +51,14 @@ public class CameraScript : MonoBehaviour
         }
 
 
+
+
       
     }
 
     public IEnumerator MoveToFort()
     {
+        dist = 1;
         while (transform.position.x < fortPositionX.x)
         {
             yield return new WaitForSeconds(0.01f);

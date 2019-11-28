@@ -5,26 +5,34 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private CameraScript cameraScript;
-    private bird birdScript;
+    [SerializeField] private bird[] birdScript;
     private ExplosionForce explosionScript;
     private ParticleBird particleScript;
+    [SerializeField] RopeScript slingshot;
     private bool birdisShot;
-    private int cameraMove = 0;
+    private bool cameraMove = true;
+    private int index = 0;
 
 
     private void Awake()
     {
         cameraScript = GameObject.Find(Constante.mainCamera).GetComponent<CameraScript>();
-        birdScript = GameObject.Find(Constante.player).GetComponent<bird>();
+        
     }
 
     void Update()
     {
         
-        if (birdScript.shot&& cameraMove == 0)
+        if (birdScript[index].shot&& cameraMove)
         {
             CameraMoveToFort();
-            cameraMove++;
+            
+        }
+        if(birdScript[index] == null)
+        {
+            index++;
+            print(index);
+            CameraMoveToBirds();
         }
         
 
@@ -32,7 +40,24 @@ public class GameManager : MonoBehaviour
 
     public void CameraMoveToFort()
     {
+        
         StartCoroutine(cameraScript.MoveToFort());
+        
+    }
+    public void CameraMoveToBirds()
+    {
+        StartCoroutine(TimerNewBird());
+        StartCoroutine(cameraScript.MoveToBird());
+        
+        
+
+    }
+    private IEnumerator TimerNewBird()
+    {
+        yield return new WaitForSeconds(2);
+        
+        slingshot.newBird(index);
+        
     }
 
     

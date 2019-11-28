@@ -102,7 +102,7 @@ public class ExplosionForce : BirdClass
             {
                 explodingDirection.Normalize();
             }
-            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
+            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);            
         }
 
     }
