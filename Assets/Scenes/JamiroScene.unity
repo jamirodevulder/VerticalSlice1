@@ -178,6 +178,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isPressed: 0
+  shot: 0
   rb: {fileID: 0}
   sj: {fileID: 0}
   slingRb: {fileID: 0}
@@ -5349,7 +5350,7 @@ GameObject:
   - component: {fileID: 116553430}
   - component: {fileID: 116553431}
   m_Layer: 0
-  m_Name: slingshot
+  m_Name: Catapult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5363,8 +5364,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116553429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48519534, y: -0.95, z: -510.33466}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.48519534, y: -0.95, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 252234892}
   - {fileID: 1526072627}
@@ -5764,7 +5765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252234891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.585195, y: 0.31554335, z: 510.33466}
+  m_LocalPosition: {x: -6.585195, y: 0.31554335, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 116553430}
@@ -5827,8 +5828,8 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252234891}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -5836,7 +5837,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e0ffb0edd32314c969450edeced7ef3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5858,8 +5859,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -6.5234447, y: 2.7743273, z: 0}
-  - {x: -5.453209, y: 2.7743282, z: 1}
+  - {x: -3, y: 0.8694444, z: 0}
+  - {x: -2.51258, y: 0.8648014, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -5867,8 +5868,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.60563403
+        time: 0.016483307
+        value: 0.36619693
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -6266,7 +6267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393344849}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.59, y: 2.9, z: 0}
+  m_LocalPosition: {x: -2.89, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1451792494}
@@ -16264,6 +16265,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isPressed: 0
+  shot: 0
   rb: {fileID: 0}
   sj: {fileID: 0}
   slingRb: {fileID: 0}
@@ -16557,7 +16559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250129278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.72, y: 2.58, z: -0.33161366}
+  m_LocalPosition: {x: -3.02, y: 1.02, z: -0.33161366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21446,7 +21448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526072626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.8851953, y: 2.6455433, z: 510.33466}
+  m_LocalPosition: {x: -7.8851953, y: 2.6455433, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 116553430}
@@ -21518,7 +21520,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e0ffb0edd32314c969450edeced7ef3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21540,8 +21542,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -6.3607907, y: 2.7492337, z: 0}
-  - {x: -7.8369083, y: 2.7743282, z: 1}
+  - {x: -3.0382872, y: 0.8694444, z: -4}
+  - {x: -3.7157261, y: 0.8694444, z: 4}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -21550,7 +21552,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5915489
+        value: 0.36619568
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -21562,7 +21564,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.3372549, g: 0.15294118, b: 0.078431375, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -21655,6 +21657,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isPressed: 0
+  shot: 0
   rb: {fileID: 0}
   sj: {fileID: 0}
   slingRb: {fileID: 0}
@@ -22076,7 +22079,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 7.174231
+  m_Distance: 3.216038
   m_DampingRatio: 0
   m_Frequency: 2
 --- !u!114 &2078316314
@@ -22096,6 +22099,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isPressed: 0
+  shot: 0
   rb: {fileID: 0}
   sj: {fileID: 0}
   slingRb: {fileID: 0}
@@ -22258,7 +22262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078316312}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.014220238, y: -0.03142786, z: 0}
+  m_LocalPosition: {x: -0.16, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 141282912}
