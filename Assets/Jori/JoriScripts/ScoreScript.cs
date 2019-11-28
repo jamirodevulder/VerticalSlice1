@@ -12,7 +12,6 @@ public class ScoreScript : MonoBehaviour
     private void Awake()
     {
         enemyt = GameObject.Find("Enemy");
-        Debug.Log(enemyt);
         score = 0;
         scoreText = GetComponent<Text>();
         scoreText.text = "Score: " + score;

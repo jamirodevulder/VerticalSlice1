@@ -10,10 +10,15 @@ public class PauseButton : UIScript
     private GameObject menuKnopGO; //menuKnopGameObject
     private GameObject restartKnopGO; //restartKnopGameObject
     private GameObject muteKnopGO; //muteKnopGameObject
+    private GameObject achtergrondGO; //achtergrondGameObject
+    [SerializeField] private Sprite pausedImage; //Image voor de pauzeknop als het spel op pauze staat
+    [SerializeField] private Sprite unpausedImage; //Image voor de pauzeknop als het spel niet op pauze staat
 
     private void Awake()
     {   //LevelSelectButton gerelateerde code
-        levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject 
+        levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject
+        //achtergrond gerelateerde code
+        achtergrondGO = GameObject.Find("BackgroundGameObject");
         //Menuknop gerelateerde code
         menuKnopGO = GameObject.Find("MKGameObject");
         //RestartKnop gerelateerde code
@@ -39,13 +44,14 @@ public class PauseButton : UIScript
         menuKnopGO.SetActive(false);
         restartKnopGO.SetActive(false);
         muteKnopGO.SetActive(false);
+        achtergrondGO.SetActive(false);
     }
     private void Update()
     {
         if (unpaused)
         {
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
-            resizeButton(160,30);
+            ResizeButton(160,30);
         }
     }
 
@@ -57,13 +63,14 @@ public class PauseButton : UIScript
                 unpaused = false;
                 Time.timeScale = 0; //Zet op pause
                 buttonText.text = "";
-                resizeButton(35, 22);
-                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7f,mainCamera.transform.position.y,0); //Z positie wordt anders -400
+                ResizeButton(45, 46);
+                clickableButton.image.sprite = pausedImage;
+                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7.7f,mainCamera.transform.position.y,0); //Z positie wordt anders -400
                 levelSelectGO.SetActive(true);
                 menuKnopGO.SetActive(true);
                 restartKnopGO.SetActive(true);
                 muteKnopGO.SetActive(true);
-                
+                achtergrondGO.SetActive(true);
                 break;
 
             case false:
@@ -71,16 +78,18 @@ public class PauseButton : UIScript
                 Time.timeScale = 1; //Hervat spel
                 buttonText.text = "";
                 clickableButton.transform.position = returnPosition;
-                resizeButton(160, 30);
+                ResizeButton(160, 30);
+                clickableButton.image.sprite = unpausedImage;
                 levelSelectGO.SetActive(false);
                 menuKnopGO.SetActive(false);
                 restartKnopGO.SetActive(false);
                 muteKnopGO.SetActive(false);
+                achtergrondGO.SetActive(false);
                 break;
         }
     }
 
-    void resizeButton(float x, float y)
+    void ResizeButton(float x, float y)
     {
         clickableButton.GetComponent<RectTransform>().sizeDelta = new Vector2(x,y);
     }
