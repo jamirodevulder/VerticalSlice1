@@ -22,18 +22,17 @@ public class ExplosionForce : BirdClass
 
     private void Start()
     {
-        playerRb.AddForce(new Vector2(300*playerRb.mass,45*playerRb.mass));
-        
+        //playerRb.AddForce(new Vector2(300*playerRb.mass,45*playerRb.mass));
     }
 
-    void Update() 
+    void Update()
     {
-        
+
         Vector3 explosionPos = transform.position;  // zorgt er voor dat hij weet van waar hij de explosie moet schieten
         colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer); // maakt een circel om de vogel heen van welke objecten force moeten krijgen
-        
-        
-            if (Input.GetKeyDown("space")&&canExplode == true) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
+
+
+            if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
             {
             playTimer = false;
             StartCoroutine(ExplosionTimer());
@@ -61,7 +60,7 @@ public class ExplosionForce : BirdClass
             explosieAudio.clip = explosieTimer;
             explosieAudio.Play();
             yield return new WaitForSeconds(explosieAudio.clip.length);
-          
+
             playTimer = false;
 
         }
@@ -69,7 +68,7 @@ public class ExplosionForce : BirdClass
         {
             yield return new WaitForSeconds(0);
         }
-        
+
 
 
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
@@ -79,7 +78,7 @@ public class ExplosionForce : BirdClass
         }
         canExplode = false;
         particleHandler.GetComponent<particleSystemPlayScript>().playParticle();
-        
+
         onDestroy();
     }
 
@@ -88,9 +87,11 @@ public class ExplosionForce : BirdClass
 
         if (canExplode == true)
         {
-            
+
             Vector2 explodingDirection = rb.position - explodingPosition;
             float explodingDistance = explodingDirection.magnitude;
+
+
             explosieAudio.Play();
             if (upwardsModifier == 0)
             {
@@ -103,7 +104,7 @@ public class ExplosionForce : BirdClass
             }
             rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
         }
-        
+
     }
 
     private void OnDrawGizmos()

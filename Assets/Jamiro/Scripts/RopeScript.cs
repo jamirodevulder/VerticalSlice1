@@ -7,7 +7,7 @@ public class RopeScript : MonoBehaviour
     [SerializeField] GameObject firstLine;
     [SerializeField] GameObject secondLine;
     [SerializeField] GameObject[] birds;
- 
+
 
     private LineRenderer line1;
     private LineRenderer line2;
@@ -54,8 +54,8 @@ public class RopeScript : MonoBehaviour
             }
             else
             {
-                setlinePostions(mouseposition);             
-            } 
+                setlinePostions(mouseposition);
+            }
     }
 
     public void setlinePostions(Vector3 positionForLines)
