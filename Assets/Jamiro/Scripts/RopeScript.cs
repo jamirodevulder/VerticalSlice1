@@ -60,9 +60,9 @@ public class RopeScript : MonoBehaviour
 
     public void setlinePostions(Vector3 positionForLines)
     {
-        positionForLines.z = 1.1f;
+        positionForLines.z = 1f;
         line1.SetPosition(0, positionForLines);
-        positionForLines.z = 0.5f;
+        positionForLines.z = 4f;
         line2.SetPosition(0, positionForLines);
     }
     public void returnLines()
