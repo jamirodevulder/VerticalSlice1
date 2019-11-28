@@ -7,10 +7,11 @@ public class bird : BirdClass
     [SerializeField] private LineRenderer[] lines;
     [SerializeField] private bool isPressed;
 
+    private CameraScript cameraScript;
     private RopeScript ropes;
     private float releaseDelay;
     private float maxDragDistance = 2f;
-    private bool shot = false;
+    public bool shot = false;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpringJoint2D sj;
@@ -84,6 +85,7 @@ public class bird : BirdClass
         rb.isKinematic = false;
 
         shot = true;
+
     }
 
     private IEnumerator Release()
@@ -92,6 +94,9 @@ public class bird : BirdClass
         
         sj.enabled = false;
         shot = false;
+
+
+
         
         
     }

@@ -50,4 +50,7 @@ public class RopeScript : MonoBehaviour
     {
         setlinePostions(middleRange);
     }   
+
+
+
 }
