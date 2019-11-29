@@ -17,8 +17,9 @@ public class Move : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime); // Beweegt naar rechts
         if(Input.GetKeyDown(KeyCode.W))
         {
-            scoreScript.AddScore(10);
+            scoreScript.AddScore(400);
             Destroy(this.gameObject);
+            Destroy(this);
         }
     }
 }

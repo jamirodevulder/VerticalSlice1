@@ -32,7 +32,7 @@ public class PauseButton : UIScript
         buttonText.text = "";
         //PauzeButton-positie gerelateerde code
         mainCamera = FindObjectOfType<Camera>();
-        transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 4.7f,0); //Zet in de hoek
+        transform.position = new Vector3(mainCamera.transform.position.x - 9.95f, mainCamera.transform.position.y + 4.29f,0); //Zet in de hoek
         returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop
         //Voor als het spel herstart wordt
         unpaused = true;
@@ -51,7 +51,7 @@ public class PauseButton : UIScript
         if (unpaused)
         {
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
-            ResizeButton(160,30);
+            ResizeButton(82, 77);
         }
     }
 
@@ -78,7 +78,7 @@ public class PauseButton : UIScript
                 Time.timeScale = 1; //Hervat spel
                 buttonText.text = "";
                 clickableButton.transform.position = returnPosition;
-                ResizeButton(160, 30);
+                ResizeButton(82, 77);
                 clickableButton.image.sprite = unpausedImage;
                 levelSelectGO.SetActive(false);
                 menuKnopGO.SetActive(false);
