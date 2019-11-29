@@ -14,6 +14,7 @@ public class ExplosionForce : BirdClass
     [SerializeField] private bool canExplode = true; // kijk of hij objecten nog aangetast kunnen worden
     [SerializeField] private bool playTimer = true; // kijkt of hij klaar is met audio spelen
     [SerializeField] private bool startTimer = true; // kijkt of hij de audio mag spelen of gelijk moet exploderen
+    private bool SpaceBarExplode = true;
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
@@ -32,7 +33,7 @@ public class ExplosionForce : BirdClass
         colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer); // maakt een circel om de vogel heen van welke objecten force moeten krijgen
 
 
-            if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
+            if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true && SpaceBarExplode) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
             {
             playTimer = false;
             StartCoroutine(ExplosionTimer());
@@ -57,6 +58,7 @@ public class ExplosionForce : BirdClass
         if (playTimer == true) // als playtimer true is gaat hij audio spelen en explodeert daar na
         {
             startTimer = false; // als startTimer false is kan hij niet meer de IEnum kan aan roepen om iets te laten exploderen
+            SpaceBarExplode = false;
             explosieAudio.clip = explosieTimer;
             explosieAudio.Play();
             yield return new WaitForSeconds(explosieAudio.clip.length);
