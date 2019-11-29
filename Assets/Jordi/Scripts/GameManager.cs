@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         
         if (birdScript[index].shot&& cameraMove)
         {
+
             CameraMoveToFort();
             
         }
@@ -48,8 +49,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(TimerNewBird());
         StartCoroutine(cameraScript.MoveToBird());
-        
-        
+        cameraScript.dist = 1;
+
 
     }
     private IEnumerator TimerNewBird()

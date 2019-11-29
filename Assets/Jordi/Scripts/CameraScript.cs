@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private Vector3 fortPositionX;
     [SerializeField] private Vector3 birdPositionX;
-    [SerializeField] private float dist =1;
+    [SerializeField] public float dist =1;
 
 
 
     private float pointsRadius;
-    [SerializeField] private Camera mainCamera;
+
 
     private void Start()
     {
@@ -58,7 +59,7 @@ public class CameraScript : MonoBehaviour
 
     public IEnumerator MoveToFort()
     {
-        dist = 1;
+        
         while (transform.position.x < fortPositionX.x)
         {
             yield return new WaitForSeconds(0.01f);
@@ -71,6 +72,7 @@ public class CameraScript : MonoBehaviour
             }
 
         }
+ 
 
 
     }
