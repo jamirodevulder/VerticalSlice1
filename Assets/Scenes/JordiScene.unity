@@ -285,7 +285,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0af63907a823df941b0883b4c75bf38a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: edb2320e967db204fb340bb9d90d533d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.542
   m_Pitch: 1
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  power: 25
+  power: 250
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
