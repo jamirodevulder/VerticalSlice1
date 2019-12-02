@@ -7,10 +7,10 @@ using System.IO;
 public class ScoreScript : MonoBehaviour
 {
     private float score;
-    private Text scoreText;
-    private Text highScoreText;
     private string highScoreString;
     private string path;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text highScoreText;
     [SerializeField] private float highScore;
     [SerializeField] private StreamWriter write;
     [SerializeField] private StreamReader read;
@@ -18,21 +18,19 @@ public class ScoreScript : MonoBehaviour
 
     private void Awake()
     {
-        path = "Assets/Scenes/Highscore.txt";
+        path = "Assets/Scenes/Highscore.txt"; //locatie van het highscore.txt bestand
         enemyt = GameObject.Find("Enemy");
         score = 0;
-        scoreText = GetComponent<Text>();
-        highScoreText = GetComponent<Text>();
         scoreText.text = "Score: " + score;
         read = new StreamReader(path, false);
-        while (!read.EndOfStream)
+        while (!read.EndOfStream) //Leest het highscore.txt bestand
         {
-            highScoreString = read.ReadLine();
-            highScore = float.Parse(highScoreString);
+            highScoreString = read.ReadLine(); //leest het bestand
+            highScore = float.Parse(highScoreString); //zet string om in een float
             highScoreText.text = "Highscore: " + highScore;
         }
-        read.Close();
-        write = new StreamWriter(path, false);
+        read.Close(); //Stopt met lezen
+        write = new StreamWriter(path, false); //maakt een streamwriter aan
         UpdateHighScore(highScore);
     }
 
