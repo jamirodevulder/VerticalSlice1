@@ -11,7 +11,8 @@ public class RopeScript : MonoBehaviour
 
     private LineRenderer line1;
     private LineRenderer line2;
-    private Vector2 middleRange;
+    private Vector3 middleRange;
+    [SerializeField] private float range;
     
 
     // Start is called before the first frame update
@@ -19,7 +20,8 @@ public class RopeScript : MonoBehaviour
     {
         line1 = firstLine.GetComponent<LineRenderer>();
         line2 = secondLine.GetComponent<LineRenderer>();
-        middleRange = new Vector2(GameObject.Find("middelpunt").transform.position.x, GameObject.Find("middelpunt").transform.position.y);
+        middleRange = GameObject.Find("middelpunt").transform.position;
+        middleRange.z = 1;
         setlinePostions(middleRange);
     }
 
@@ -33,13 +35,15 @@ public class RopeScript : MonoBehaviour
     }
     public void DrawLines()
     {
-            Vector2 mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseposition.z = 1;
+
             float distance = Vector2.Distance(mouseposition, middleRange);
 
-            if (distance > 2)
+            if (distance > range)
             {
                 var direction = (mouseposition - middleRange).normalized;
-                var maxPosition = middleRange + direction * 2f;
+                var maxPosition = middleRange + direction * range;
                 setlinePostions(maxPosition);
             }
             else
@@ -52,7 +56,7 @@ public class RopeScript : MonoBehaviour
     {
         positionForLines.z = 1f;
         line1.SetPosition(0, positionForLines);
-        positionForLines.z = 4f;
+        positionForLines.z = 1f;
         line2.SetPosition(0, positionForLines);
     }
     public void returnLines()

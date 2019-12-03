@@ -16,6 +16,7 @@ public class CameraScript : MonoBehaviour
 
     private void Start()
     {
+        mainCamera.transform.position = fortPositionX;
         pointsRadius = fortPositionX.x - birdPositionX.x;
         StartCoroutine(MoveToBird());
         
@@ -42,13 +43,7 @@ public class CameraScript : MonoBehaviour
         while ( transform.position.x > birdPositionX.x)
         {
             yield return new WaitForSeconds(0.0000001f);
-            transform.position -= new Vector3(0.3f, 0);
-            
-            if (mainCamera.orthographicSize >= 7)
-            {
-                mainCamera.orthographicSize -= 0.03f;
-
-            }
+            transform.position -= new Vector3(0.1f, 0);
         }
 
 
@@ -63,14 +58,8 @@ public class CameraScript : MonoBehaviour
         while (transform.position.x < fortPositionX.x)
         {
             yield return new WaitForSeconds(0.01f);
-            dist -= (Time.deltaTime*2) * dist;
-            this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 1.9f, fortPositionX.z), new Vector3(birdPositionX.x, 1.9f, birdPositionX.z), dist);
-            if (mainCamera.orthographicSize <= 8)
-            {
-                mainCamera.orthographicSize += 0.025f;
-
-            }
-
+            dist -= (Time.deltaTime/10) * dist;
+            this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 0, fortPositionX.z), new Vector3(birdPositionX.x, 0, birdPositionX.z), dist);
         }
  
 
