@@ -6,46 +6,34 @@ using UnityEngine.UI;
 public class PauseButton : UIScript
 {
     public bool unpaused; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
-    private GameObject levelSelectGO; //levelSelectGameObject
-    private GameObject menuKnopGO; //menuKnopGameObject
-    private GameObject restartKnopGO; //restartKnopGameObject
-    private GameObject muteKnopGO; //muteKnopGameObject
-    private GameObject achtergrondGO; //achtergrondGameObject
+    private GameObject[] buttonGameObjects = new GameObject[5];
+    private RectTransform buttonTransform;
     [SerializeField] private Sprite pausedImage; //Image voor de pauzeknop als het spel op pauze staat
     [SerializeField] private Sprite unpausedImage; //Image voor de pauzeknop als het spel niet op pauze staat
 
     private void Awake()
-    {   //LevelSelectButton gerelateerde code
-        levelSelectGO = GameObject.Find("LSBGameObject"); //Zoekt het GameObject
-        //achtergrond gerelateerde code
-        achtergrondGO = GameObject.Find("BackgroundGameObject");
-        //Menuknop gerelateerde code
-        menuKnopGO = GameObject.Find("MKGameObject");
-        //RestartKnop gerelateerde code
-        restartKnopGO = GameObject.Find("RKGameObject");
-        //MuteKnop gerelateerde code
-        muteKnopGO = GameObject.Find("MuteKnopGameObject");
+    {
+        buttonGameObjects[0] = GameObject.Find("LSBGameObject"); //Zoekt het GameObject, LevelSelectButton
+        buttonGameObjects[1] = GameObject.Find("BackgroundGameObject"); //achtergrond
+        buttonGameObjects[2] = GameObject.Find("MKGameObject"); //Menuknop
+        buttonGameObjects[3] = GameObject.Find("RKGameObject"); //RestartKnop
+        buttonGameObjects[4] = GameObject.Find("MuteKnopGameObject"); //MuteKnop
+        SetObjectState(false);
         //PauzeButton gerelateerde code
         clickableButton = GetComponent<Button>();
-        GetComponent<Button>().onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
+        buttonTransform = clickableButton.GetComponent<RectTransform>();
+        clickableButton.onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonText = GetComponentInChildren<Text>();
         buttonText.text = "";
         //PauzeButton-positie gerelateerde code
         mainCamera = FindObjectOfType<Camera>();
-        transform.position = new Vector3(mainCamera.transform.position.x - 9.95f, mainCamera.transform.position.y + 4.29f,0); //Zet in de hoek
+        transform.position = new Vector3(mainCamera.transform.position.x - 9.95f, mainCamera.transform.position.y + 4.29f, 0); //Zet in de hoek
         returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop
         //Voor als het spel herstart wordt
         unpaused = true;
         Time.timeScale = 1;
     }
-    private void Start()
-    {
-        levelSelectGO.SetActive(false);
-        menuKnopGO.SetActive(false);
-        restartKnopGO.SetActive(false);
-        muteKnopGO.SetActive(false);
-        achtergrondGO.SetActive(false);
-    }
+
     private void Update()
     {
         if (unpaused)
@@ -65,12 +53,8 @@ public class PauseButton : UIScript
                 buttonText.text = "";
                 ResizeButton(45, 46);
                 clickableButton.image.sprite = pausedImage;
-                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7.7f,mainCamera.transform.position.y,0); //Z positie wordt anders -400
-                levelSelectGO.SetActive(true);
-                menuKnopGO.SetActive(true);
-                restartKnopGO.SetActive(true);
-                muteKnopGO.SetActive(true);
-                achtergrondGO.SetActive(true);
+                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7.7f, mainCamera.transform.position.y, 0); //Z positie wordt anders -400
+                SetObjectState(true);
                 break;
 
             case false:
@@ -80,17 +64,22 @@ public class PauseButton : UIScript
                 clickableButton.transform.position = returnPosition;
                 ResizeButton(82, 77);
                 clickableButton.image.sprite = unpausedImage;
-                levelSelectGO.SetActive(false);
-                menuKnopGO.SetActive(false);
-                restartKnopGO.SetActive(false);
-                muteKnopGO.SetActive(false);
-                achtergrondGO.SetActive(false);
+                SetObjectState(false);
                 break;
         }
     }
 
     void ResizeButton(float x, float y)
     {
-        clickableButton.GetComponent<RectTransform>().sizeDelta = new Vector2(x,y);
+        buttonTransform.sizeDelta = new Vector2(x, y);
+    }
+
+    void SetObjectState(bool tempBool)
+    {
+        buttonGameObjects[0].SetActive(tempBool);
+        buttonGameObjects[1].SetActive(tempBool);
+        buttonGameObjects[2].SetActive(tempBool);
+        buttonGameObjects[3].SetActive(tempBool);
+        buttonGameObjects[4].SetActive(tempBool);
     }
 }
