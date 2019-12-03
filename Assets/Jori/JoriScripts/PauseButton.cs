@@ -20,9 +20,8 @@ public class PauseButton : UIScript
         buttonGameObjects[4] = GameObject.Find("MuteKnopGameObject"); //MuteKnop
         SetObjectState(false);
         //PauzeButton gerelateerde code
-        clickableButton = GetComponent<Button>();
+        AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonTransform = clickableButton.GetComponent<RectTransform>();
-        clickableButton.onClick.AddListener(OnButtonClick); //Pakt de onClick function van de button
         buttonText = GetComponentInChildren<Text>();
         buttonText.text = "";
         //PauzeButton-positie gerelateerde code

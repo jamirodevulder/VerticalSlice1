@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class MuteButton : UIScript
 {
-    private bool musicMuted; //True is muziek is gemute
+    private bool musicMuted; //True is muziek is gedempt
     private AudioSource music;
 
     private void Awake()
     {
-        GetComponentInChildren<Button>().onClick.AddListener(MuteKnopClicked);
-        clickableButton = GetComponentInChildren<Button>();
-        mainCamera = FindObjectOfType<Camera>();
+        AddListener(MuteKnopClicked);
         music = mainCamera.GetComponent<AudioSource>();
         clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 10f, mainCamera.transform.position.y - 4f, mainCamera.transform.position.z + 10);
         musicMuted = false;

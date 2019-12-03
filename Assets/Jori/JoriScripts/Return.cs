@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Return : MonoBehaviour
+public class Return : UIScript
 {
     private void Awake()
     {
-        GetComponentInChildren<Button>().onClick.AddListener(ReturnKnop);
+        AddListener(ReturnKnop);
+        clickableButton = GetComponentInChildren<Button>();
     }
 
     private void ReturnKnop()
