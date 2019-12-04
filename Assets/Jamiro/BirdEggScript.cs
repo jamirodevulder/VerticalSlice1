@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdEggScript : bird
+public class BirdEggScript : BirdClass
 {
     [SerializeField] GameObject egg;
     private GameManager gameManager;
@@ -11,7 +11,7 @@ public class BirdEggScript : bird
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+      //  gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class BirdEggScript : bird
     private IEnumerator DestroyTimer()
     {
         yield return new WaitForSeconds(3);
-        gameManager.increaseIndex();
+        //gameManager.increaseIndex();
         yield return new WaitForSeconds(3);
         onDestroy();
     }
