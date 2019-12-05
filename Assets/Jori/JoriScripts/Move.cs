@@ -5,6 +5,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] private ScoreScript scoreScript;
+    [SerializeField] private PauseButton pauseScript;
     private Sprite enemy;
     
     private void Awake()
@@ -17,6 +18,7 @@ public class Move : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime); // Beweegt naar rechts
         if(Input.GetKeyDown(KeyCode.W))
         {
+            pauseScript.buttonGameObjects[5].SetActive(true);
             scoreScript.AddScore(400);
             Destroy(this.gameObject);
             Destroy(this);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class RestartKnop : UIScript
+public class RestartButton : UIScript
 {
     private void Awake()
     {

@@ -10,7 +10,7 @@ public class UIScript : MonoBehaviour
     protected Vector3 returnPosition;
     protected Camera mainCamera;
 
-    protected void AddListener(UnityEngine.Events.UnityAction call)
+    protected void AddListener(UnityEngine.Events.UnityAction call) //Gebeurt in elk script, zoekt de knop, camera en voegt een functie toe
     {
         clickableButton = GetComponentInChildren<Button>();
         mainCamera = FindObjectOfType<Camera>();

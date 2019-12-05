@@ -14,12 +14,12 @@ public class ScoreScript : MonoBehaviour
     [SerializeField] private float highScore;
     [SerializeField] private StreamWriter write;
     [SerializeField] private StreamReader read;
-    [SerializeField] private GameObject enemyt;
+    [SerializeField] private GameObject enemy;
 
     private void Awake()
     {
         path = "Assets/Scenes/Highscore.txt"; //locatie van het highscore.txt bestand
-        enemyt = GameObject.Find("Enemy");
+        enemy = GameObject.Find("Enemy");
         score = 0;
         scoreText.text = "Score: " + score;
         read = new StreamReader(path, false);
@@ -42,14 +42,13 @@ public class ScoreScript : MonoBehaviour
         if(score > highScore)
         {
             highScore = score;
-            UpdateHighScore(highScore);
+            highScoreText.text = "Highscore: " + highScore;
         }
     }
 
-    public void UpdateHighScore(float tempScore) //Update de highscore
+    public void UpdateHighScore(float tempScore) //Updatet de highscore, gebruik dit wanneer het hele spel afgelopen is
     {
         highScore = tempScore;
-        highScoreText.text = "Highscore: " + highScore;
         write.WriteLine(tempScore.ToString());
         write.Close();
     }
