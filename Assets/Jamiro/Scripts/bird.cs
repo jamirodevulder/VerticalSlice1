@@ -10,7 +10,7 @@ public class bird : BirdClass
     private CameraScript cameraScript;
     private RopeScript ropes;
     private float releaseDelay;
-    private float maxDragDistance = 0.5f;
+    private float maxDragDistance = 2f;
     public bool shot = false;
 
     [SerializeField] private Rigidbody2D rb;

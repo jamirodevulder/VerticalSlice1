@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         
         if (birdScript[index].shot&& cameraMove)
         {
-
+            cameraMove = false;
+            print("Krijg AIDS");
             CameraMoveToFort();
             
         }
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(TimerNewBird());
         StartCoroutine(cameraScript.MoveToBird());
-        cameraScript.dist = 1;
+
 
 
     }

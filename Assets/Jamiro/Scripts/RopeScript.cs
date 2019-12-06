@@ -21,7 +21,7 @@ public class RopeScript : MonoBehaviour
         line1 = firstLine.GetComponent<LineRenderer>();
         line2 = secondLine.GetComponent<LineRenderer>();
         middleRange = GameObject.Find("middelpunt").transform.position;
-        middleRange.z = 1;
+        
         setlinePostions(middleRange);
     }
 
