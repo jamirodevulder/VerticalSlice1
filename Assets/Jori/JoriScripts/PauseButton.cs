@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PauseButton : UIScript
 {
-    private bool gameWon;
+    public bool gameWon; //Voor als het spel gewonnen is
+    public GameObject[] buttonGameObjects = new GameObject[6]; //Array van GameObjects, parents van knoppen
     private bool unpaused; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
-    public GameObject[] buttonGameObjects = new GameObject[6];
     private RectTransform buttonTransform;
     [SerializeField] private Sprite pausedImage; //Image voor de pauzeknop als het spel op pauze staat
     [SerializeField] private Sprite unpausedImage; //Image voor de pauzeknop als het spel niet op pauze staat

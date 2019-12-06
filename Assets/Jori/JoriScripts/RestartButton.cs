@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class RestartButton : UIScript
 {
+    [SerializeField] private PauseButton pauseScript;
     private void Awake()
     {
         AddListener(RestartKnopClicked);

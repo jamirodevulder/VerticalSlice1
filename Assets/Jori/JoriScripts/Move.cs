@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] private ScoreScript scoreScript;
-    [SerializeField] private PauseButton pauseScript;
     private Sprite enemy;
+    [SerializeField] private PauseButton pauseScript;
     
     private void Awake()
     {
@@ -19,7 +18,9 @@ public class Move : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W))
         {
             pauseScript.buttonGameObjects[5].SetActive(true);
-            scoreScript.AddScore(400);
+            pauseScript.buttonGameObjects[3].SetActive(true);
+            pauseScript.buttonGameObjects[0].SetActive(true);
+            pauseScript.gameWon = true;
             Destroy(this.gameObject);
             Destroy(this);
         }

@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621b567d05567b644a8362f4a04778dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreScript: {fileID: 255224465}
   pauseScript: {fileID: 1763087461}
 --- !u!1 &493071417
 GameObject:
@@ -793,7 +792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70939f3b161f7f4d94f65a75528e53d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScript: {fileID: 1763087461}
 --- !u!1 &718261530
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875e51fb9dfb8234caed711f61618ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseScript: {fileID: 1763087461}
 --- !u!1 &781613099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1358682860}
+  - component: {fileID: 1358682861}
   m_Layer: 0
   m_Name: WSGameObject
   m_TagString: Untagged
@@ -1376,6 +1376,19 @@ Transform:
   m_Father: {fileID: 1685395880}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1358682861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358682859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8ea366cc727444cb24389e5fd2b75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseScript: {fileID: 1763087461}
 --- !u!1 &1391561697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2433fa9809211943b98037d9b609991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameWon: 0
   buttonGameObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2031,6 +2045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583911478c012f4a99e9e37998d6e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseScript: {fileID: 1763087461}
 --- !u!1 &2028633386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,11 +2140,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a906b817ffe018d4d909a8620b2e810f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.224
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
