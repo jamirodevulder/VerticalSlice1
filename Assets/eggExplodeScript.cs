@@ -43,11 +43,11 @@ public class eggExplodeScript : MonoBehaviour
     {
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
-            if (hit.GetComponent<Rigidbody2D>() != null)
-            {
+            
+            
                 rb = hit.GetComponent<Rigidbody2D>();
                 AddExplosionForce(rb, power, transform.position, radius);
-            }
+            
         }
         
 
@@ -75,11 +75,11 @@ public class eggExplodeScript : MonoBehaviour
                 {
                     if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                        block.setObjectHealt((block.maxhealt / 3) * 3);
                     }
                     if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 1);
+                        block.setObjectHealt((block.maxhealt / 3) * 2);
                     }
 
                 }

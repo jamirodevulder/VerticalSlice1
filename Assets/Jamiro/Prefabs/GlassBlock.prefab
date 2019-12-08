@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &936907688802923109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571362797708598079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5722ea6e4c18f488aca18fb60cce35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealt: 10
+  healtStages:
+  - 10
+  - 7
+  - 4
+  stagesSprites:
+  - {fileID: 21300000, guid: ced66291c478f864a9c934107fe3a622, type: 3}
+  - {fileID: 21300000, guid: 34e29f53e04108140b688f33093c27a0, type: 3}
+  - {fileID: 21300000, guid: 42bdb48c727aa884eb3bbb5fbafdc582, type: 3}
+  systems:
+  - {fileID: 936907689128661576}
+  - {fileID: 936907687964039879}
+  - {fileID: 936907689805830473}
+  particleRemover: {fileID: 0}
 --- !u!1 &936907687964039876
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,8 +55,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.029999971, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 936907688843395079}
-  m_RootOrder: 1
+  m_Father: {fileID: 936907688673190547}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &936907687964039879
 ParticleSystem:
@@ -4781,34 +4807,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 571362797708598078}
+  - {fileID: 936907689805830479}
+  - {fileID: 936907687964039877}
+  - {fileID: 936907689128661582}
   m_Father: {fileID: 936907688843395079}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &936907688802923109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571362797708598079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5722ea6e4c18f488aca18fb60cce35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxhealt: 10
-  healtStages:
-  - 10
-  - 7
-  - 4
-  stagesSprites:
-  - {fileID: 21300000, guid: ced66291c478f864a9c934107fe3a622, type: 3}
-  - {fileID: 21300000, guid: 34e29f53e04108140b688f33093c27a0, type: 3}
-  - {fileID: 21300000, guid: 42bdb48c727aa884eb3bbb5fbafdc582, type: 3}
-  systems:
-  - {fileID: 936907689128661576}
-  - {fileID: 936907687964039879}
-  - {fileID: 936907689805830473}
 --- !u!1 &936907688843395078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4820,7 +4824,7 @@ GameObject:
   - component: {fileID: 936907688843395079}
   m_Layer: 8
   m_Name: GlassBlock
-  m_TagString: Untagged
+  m_TagString: object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4836,9 +4840,6 @@ Transform:
   m_LocalPosition: {x: -1.36, y: -3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 936907689805830479}
-  - {fileID: 936907687964039877}
-  - {fileID: 936907689128661582}
   - {fileID: 936907688673190547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4872,8 +4873,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.029999971, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 936907688843395079}
-  m_RootOrder: 2
+  m_Father: {fileID: 936907688673190547}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &936907689128661576
 ParticleSystem:
@@ -9625,8 +9626,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.029999971, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 936907688843395079}
-  m_RootOrder: 0
+  m_Father: {fileID: 936907688673190547}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &936907689805830473
 ParticleSystem:
@@ -14360,6 +14361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Object (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 787413035481726757, guid: dfec60707decfc548b4a2535ff1b1c31,
+        type: 3}
+      propertyPath: m_TagString
+      value: object
       objectReference: {fileID: 0}
     - target: {fileID: 787413035481726756, guid: dfec60707decfc548b4a2535ff1b1c31,
         type: 3}

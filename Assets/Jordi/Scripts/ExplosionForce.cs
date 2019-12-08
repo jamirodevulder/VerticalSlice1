@@ -18,7 +18,6 @@ public class ExplosionForce : BirdClass
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
-    Rigidbody2D rb;
     [SerializeField] Rigidbody2D playerRb;
 
     private void Start()
@@ -93,7 +92,37 @@ public class ExplosionForce : BirdClass
 
             Vector2 explodingDirection = rb.position - explodingPosition;
             float explodingDistance = explodingDirection.magnitude;
+            if (rb.GetComponentInParent<Damage>() != null)
+            {
+                Damage block = rb.GetComponentInParent<Damage>();
 
+                if (explodingDistance < radius / 2)
+                {
+                    block.setObjectHealt(block.maxhealt);
+                }
+                else
+                {
+                    if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
+                    {
+                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                    }
+                    if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
+                    {
+                        block.setObjectHealt((block.maxhealt / 3) * 1);
+                    }
+
+                }
+                if (upwardsModifier == 0)
+                {
+                    explodingDirection /= explodingDistance;
+
+                }
+                else
+                {
+                    explodingDirection.Normalize();
+                }
+                rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
+            }
 
             explosieAudio.Play();
             if (upwardsModifier == 0)
