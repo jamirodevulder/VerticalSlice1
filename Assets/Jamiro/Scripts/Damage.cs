@@ -33,10 +33,11 @@ public class Damage : MonoBehaviour
                 Destroy(this.gameObject);
 
             }
-            if (index < healtStages.Length - 1)
+            if (index  + 1 < healtStages.Length)
             {
-                index++;
+                
                 gameObject.GetComponent<SpriteRenderer>().sprite = stagesSprites[index];
+                index++;
             }
         }
  
@@ -62,7 +63,7 @@ public class Damage : MonoBehaviour
         }
         if(collision.gameObject.tag == "object")
         {
-            objectHealt -= collision.relativeVelocity.magnitude;
+            objectHealt -= collision.relativeVelocity.magnitude / 2;
          
         }
         if (collision.gameObject.tag == "ground")

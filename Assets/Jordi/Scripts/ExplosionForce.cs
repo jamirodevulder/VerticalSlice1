@@ -96,7 +96,7 @@ public class ExplosionForce : BirdClass
             {
                 Damage block = rb.GetComponentInParent<Damage>();
 
-                if (explodingDistance < radius / 2)
+                if (explodingDistance < radius / 1.5)
                 {
                     block.setObjectHealt(block.maxhealt);
                 }
@@ -104,11 +104,11 @@ public class ExplosionForce : BirdClass
                 {
                     if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                        block.setObjectHealt((block.maxhealt / 3) * 3);
                     }
                     if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 1);
+                        block.setObjectHealt((block.maxhealt / 3) * 3);
                     }
 
                 }

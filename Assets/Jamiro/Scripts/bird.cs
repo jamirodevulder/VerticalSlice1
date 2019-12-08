@@ -49,6 +49,12 @@ public class bird : BirdClass
         {
             ropes.setlinePostions(gameObject.transform.position);  
         }
+
+
+        if(gameObject.transform.position.y <= -20f)
+        {
+            Destroy(this.gameObject);
+        }
         
     }
 
@@ -72,7 +78,7 @@ public class bird : BirdClass
 
     private void OnMouseDown()
     {
-        print("test");
+
         rb.constraints = RigidbodyConstraints2D.None;
         isPressed = true;
         rb.isKinematic = true;
@@ -94,6 +100,7 @@ public class bird : BirdClass
         yield return new WaitForSeconds(releaseDelay);
         sj.enabled = false;
         shot = false;
+
         
 
 

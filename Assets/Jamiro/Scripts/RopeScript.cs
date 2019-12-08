@@ -6,7 +6,7 @@ public class RopeScript : MonoBehaviour
 {
     [SerializeField] GameObject firstLine;
     [SerializeField] GameObject secondLine;
-    [SerializeField] GameObject[] birds;
+    public GameObject[] birds;
 
 
     private LineRenderer line1;
@@ -50,9 +50,9 @@ public class RopeScript : MonoBehaviour
 
     public void setlinePostions(Vector3 positionForLines)
     {
-        positionForLines.z = 1f;
+        positionForLines.z = -3f;
         line1.SetPosition(0, positionForLines);
-        positionForLines.z = 4f;
+        positionForLines.z = -6f;
         line2.SetPosition(0, positionForLines);
     }
     public void returnLines()
@@ -66,12 +66,23 @@ public class RopeScript : MonoBehaviour
 
 
         
-        birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, 0f);
+        birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, -5f);
         birds[birdIndex].GetComponentInChildren<bird>().enabled = true;
         birds[birdIndex].GetComponentInChildren<SpringJoint2D>().enabled = true;
+        birds[birdIndex].GetComponentInChildren<PolygonCollider2D>().enabled = true;
+        birds[birdIndex].GetComponentInChildren<Rigidbody2D>().isKinematic = false;
+        birds[birdIndex].GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         birds[birdIndex].GetComponentInChildren<SpringJoint2D>().connectedBody = GameObject.Find("middelpunt").GetComponent<Rigidbody2D>();
-        birds[birdIndex].GetComponentInChildren<ExplosionForce>().enabled = true;
 
+        if (birds[birdIndex].GetComponentInChildren<ExplosionForce>() != null)
+        {
+            birds[birdIndex].GetComponentInChildren<ExplosionForce>().enabled = true;
+        }
+        else
+        {
+
+            birds[birdIndex].GetComponentInChildren<BirdEggScript>().enabled = true;
+        }
 
 
 

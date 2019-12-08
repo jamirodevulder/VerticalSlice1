@@ -24,16 +24,18 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 dis = transform.position - fortPositionX;
         float disMag = dis.magnitude;
-        if (Input.GetKeyDown(Constante.q))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            
             StartCoroutine(MoveToFort());
         }
-        if (Input.GetKeyUp(Constante.q))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
+            print("test");
             StartCoroutine(MoveToBird());
         }
     }
-
+     
 
     public IEnumerator MoveToBird()
     {
@@ -43,7 +45,10 @@ public class CameraScript : MonoBehaviour
         {
             yield return new WaitForSeconds(0.0000001f);
             transform.position -= new Vector3(0.3f, 0);
-            
+            if(transform.position.y > birdPositionX.y)
+            {
+                transform.position -= new Vector3(0, 0.03f);
+            }
             if (mainCamera.orthographicSize >= 7)
             {
                 mainCamera.orthographicSize -= 0.03f;
@@ -51,7 +56,7 @@ public class CameraScript : MonoBehaviour
             }
         }
 
-
+        dist = 1;
 
 
       
@@ -64,7 +69,7 @@ public class CameraScript : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             dist -= (Time.deltaTime*2) * dist;
-            this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 1.9f, fortPositionX.z), new Vector3(birdPositionX.x, 1.9f, birdPositionX.z), dist);
+            this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 2f, fortPositionX.z), new Vector3(birdPositionX.x, 1f, birdPositionX.z), dist);
             if (mainCamera.orthographicSize <= 8)
             {
                 mainCamera.orthographicSize += 0.025f;

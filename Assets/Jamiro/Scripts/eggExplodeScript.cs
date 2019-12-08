@@ -33,13 +33,13 @@ public class eggExplodeScript : MonoBehaviour
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
 
-            explode();
+            StartCoroutine(explode());
 
         }
     }
 
 
-    private void explode()
+    private IEnumerator explode()
     {
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
@@ -49,9 +49,10 @@ public class eggExplodeScript : MonoBehaviour
                 AddExplosionForce(rb, power, transform.position, radius);
             
         }
-        
-
-         Destroy(this.gameObject);
+        yield return new WaitForSeconds(0.1f);
+        Destroy(this.gameObject);
+       
+         
     }
 
 
@@ -75,11 +76,11 @@ public class eggExplodeScript : MonoBehaviour
                 {
                     if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 3);
+                        block.setObjectHealt((block.maxhealt / 3) * 2);
                     }
                     if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                        block.setObjectHealt((block.maxhealt / 3) * 1);
                     }
 
                 }
@@ -94,6 +95,16 @@ public class eggExplodeScript : MonoBehaviour
                 }
                 rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
             }
+            if (upwardsModifier == 0)
+            {
+                explodingDirection /= explodingDistance;
+
+            }
+            else
+            {
+                explodingDirection.Normalize();
+            }
+            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
         }
     }
 
