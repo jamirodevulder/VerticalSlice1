@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class BirdClass : MonoBehaviour
 {
-
+    public Rigidbody2D rb;
+    private Vector2 speed;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void ChangeSprite(Sprite ImageToChangeTo)
@@ -22,11 +23,15 @@ public class BirdClass : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = ImageToChangeTo;
     }
 
-
-    public void checkForDelete()
+    public Vector2 checkForDelete()
     {
-        
+        speed = rb.velocity * rb.velocity;
+
+
+
+        return speed;
     }
+
     public void onDestroy()
     {
         Destroy(gameObject);

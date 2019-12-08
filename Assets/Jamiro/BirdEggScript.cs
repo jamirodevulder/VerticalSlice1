@@ -11,7 +11,8 @@ public class BirdEggScript : BirdClass
     // Start is called before the first frame update
     void Start()
     {
-      //  gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
+        //  gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -23,7 +24,7 @@ public class BirdEggScript : BirdClass
             Instantiate(egg, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
             
         }
-        
+   
     }
 
 

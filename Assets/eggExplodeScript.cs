@@ -43,10 +43,15 @@ public class eggExplodeScript : MonoBehaviour
     {
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
-            rb = hit.GetComponent<Rigidbody2D>();
-            AddExplosionForce(rb, power, transform.position, radius);
+            if (hit.GetComponent<Rigidbody2D>() != null)
+            {
+                rb = hit.GetComponent<Rigidbody2D>();
+                AddExplosionForce(rb, power, transform.position, radius);
+            }
         }
-        Destroy(this.gameObject);
+        
+
+         Destroy(this.gameObject);
     }
 
 
@@ -58,20 +63,38 @@ public class eggExplodeScript : MonoBehaviour
 
             Vector2 explodingDirection = rb.position - explodingPosition;
             float explodingDistance = explodingDirection.magnitude;
-
-
-            if (upwardsModifier == 0)
+            if (rb.GetComponentInParent<Damage>() != null)
             {
-                explodingDirection /= explodingDistance;
+                Damage block = rb.GetComponentInParent<Damage>();
 
+                if (explodingDistance < radius / 2)
+                {
+                    block.setObjectHealt(block.maxhealt);
+                }
+                else
+                {
+                    if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
+                    {
+                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                    }
+                    if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
+                    {
+                        block.setObjectHealt((block.maxhealt / 3) * 1);
+                    }
+
+                }
+                if (upwardsModifier == 0)
+                {
+                    explodingDirection /= explodingDistance;
+
+                }
+                else
+                {
+                    explodingDirection.Normalize();
+                }
+                rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
             }
-            else
-            {
-                explodingDirection.Normalize();
-            }
-            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
         }
-
     }
 
     private void OnDrawGizmos()

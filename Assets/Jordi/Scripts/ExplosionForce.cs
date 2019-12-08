@@ -76,6 +76,7 @@ public class ExplosionForce : BirdClass
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
             rb = hit.GetComponent<Rigidbody2D>();
+
             AddExplosionForce(rb, power, transform.position, radius);
         }
         canExplode = false;
