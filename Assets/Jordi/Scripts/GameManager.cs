@@ -60,6 +60,9 @@ public class GameManager : MonoBehaviour
         slingshot.newBird(index);
         
     }
-
+    public void increaseIndex()
+    {
+        index++;
+    }
     
 }

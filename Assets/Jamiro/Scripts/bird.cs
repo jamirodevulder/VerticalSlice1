@@ -13,7 +13,7 @@ public class bird : BirdClass
     private float maxDragDistance = 2f;
     public bool shot = false;
 
-    [SerializeField] private Rigidbody2D rb;
+    
     [SerializeField] private SpringJoint2D sj;
     [SerializeField] private Rigidbody2D slingRb;
  
@@ -22,7 +22,7 @@ public class bird : BirdClass
 
     private void Awake()
     {
-         
+
         rb = GetComponent<Rigidbody2D>();
         sj = GetComponent<SpringJoint2D>();
         sj.connectedBody = GameObject.Find("middelpunt").GetComponent<Rigidbody2D>();
@@ -49,6 +49,7 @@ public class bird : BirdClass
         {
             ropes.setlinePostions(gameObject.transform.position);  
         }
+        
     }
 
     private void DragBall()
