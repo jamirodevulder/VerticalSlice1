@@ -17,7 +17,7 @@ public class LevelSelect : UIScript
     {
         if (pauseScript.gameWon == true)
         {
-            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 4f, mainCamera.transform.position.y -1 , 0);
+            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 2f, mainCamera.transform.position.y -2.5f, 0);
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PauseButton : UIScript
 {
     public bool gameWon; //Voor als het spel gewonnen is
-    public GameObject[] buttonGameObjects = new GameObject[6]; //Array van GameObjects, parents van knoppen
+    public GameObject[] buttonGameObjects = new GameObject[8]; //Array van GameObjects, parents van knoppen
     private bool unpaused; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
     private RectTransform buttonTransform;
     [SerializeField] private Sprite pausedImage; //Image voor de pauzeknop als het spel op pauze staat
@@ -17,9 +17,10 @@ public class PauseButton : UIScript
         buttonGameObjects[0] = GameObject.Find("LSBGameObject"); //Zoekt het GameObject, levelselectknop
         buttonGameObjects[1] = GameObject.Find("BackgroundGameObject"); //Achtergrond
         buttonGameObjects[2] = GameObject.Find("MBGameObject"); //Menuknop
-        buttonGameObjects[3] = GameObject.Find("RBGameObject"); //RestartKnop
-        buttonGameObjects[4] = GameObject.Find("MuteButtonGameObject"); //MuteKnop
+        buttonGameObjects[3] = GameObject.Find("RBGameObject"); //Restartknop
+        buttonGameObjects[4] = GameObject.Find("MuteButtonGameObject"); //Muteknop
         buttonGameObjects[5] = GameObject.Find("WSGameObject"); //Winscherm
+        buttonGameObjects[6] = GameObject.Find("CBGameObject"); //Continueknop
         buttonGameObjects[5].SetActive(false);
         SetObjectState(false);
         //PauzeButton gerelateerde code
@@ -43,6 +44,10 @@ public class PauseButton : UIScript
         {
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
             ResizeButton(82, 77);
+        }
+        if (gameWon == true)
+        {
+            buttonGameObjects[6].transform.position = new Vector3(mainCamera.transform.position.x + 2.4f, mainCamera.transform.position.y - 2.2f, 0);
         }
     }
 

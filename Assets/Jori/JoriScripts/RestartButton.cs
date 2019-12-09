@@ -13,6 +13,14 @@ public class RestartButton : UIScript
         clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 1.5f, mainCamera.transform.position.z + 10);
     }
 
+    private void Update()
+    {
+        if (pauseScript.gameWon == true)
+        {
+            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x + 0.5f, mainCamera.transform.position.y - 2.5f, 0);
+        }
+    }
+
     private void RestartKnopClicked()
     {
         SceneManager.LoadScene("JoriScene");
