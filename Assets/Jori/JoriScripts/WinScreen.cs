@@ -8,6 +8,6 @@ public class WinScreen : UIScript
     private void Awake()
     {
         mainCamera = FindObjectOfType<Camera>();
-        transform.position = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y,mainCamera.transform.position.z + 10);
+        transform.position = new Vector3(mainCamera.transform.position.x - 2f,mainCamera.transform.position.y + 1f,mainCamera.transform.position.z + 10);
     }
 }

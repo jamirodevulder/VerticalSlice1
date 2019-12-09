@@ -20,6 +20,7 @@ public class Move : MonoBehaviour
             pauseScript.buttonGameObjects[5].SetActive(true);
             pauseScript.buttonGameObjects[3].SetActive(true);
             pauseScript.buttonGameObjects[0].SetActive(true);
+            pauseScript.buttonGameObjects[6].SetActive(true);
             pauseScript.gameWon = true;
             Destroy(this.gameObject);
             Destroy(this);

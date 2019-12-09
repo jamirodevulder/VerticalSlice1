@@ -10,14 +10,13 @@ public class RestartButton : UIScript
     private void Awake()
     {
         AddListener(RestartKnopClicked);
-        clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 9.2f, mainCamera.transform.position.y + 1.5f, mainCamera.transform.position.z + 10);
     }
 
     private void Update()
     {
         if (pauseScript.gameWon == true)
         {
-            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x + 0.5f, mainCamera.transform.position.y - 2.5f, 0);
+            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y - 2.5f, 0);
         }
     }
 
