@@ -15,6 +15,7 @@ public class ParticleBird : MonoBehaviour
 
     private void Awake()
     {
+        bird = this.gameObject;
         emissionRate = 10f;
         thisParticle = GetComponent<ParticleSystem>();
         thisPSMain = thisParticle.main;

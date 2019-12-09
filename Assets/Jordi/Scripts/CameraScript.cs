@@ -67,7 +67,7 @@ public class CameraScript : MonoBehaviour
             yield return new WaitForSeconds(0.0001f);
             dist -= (Time.deltaTime * 2) * dist;
             this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 0, fortPositionX.z), new Vector3(birdPositionX.x, 0, birdPositionX.z), dist);
-            achtergrond.transform.position = Vector3.Lerp(new Vector3(achtergrond.transform.position.x, achtergrond.transform.position.y, 1), new Vector3(-2.43, achtergrond.transform.position.y, 1), dist);
+            achtergrond.transform.position = Vector3.Lerp(new Vector3(achtergrond.transform.position.x, achtergrond.transform.position.y, 1), new Vector3(-2.43f, achtergrond.transform.position.y, 1), dist);
 
             if (dist <= 0.01)
             {
