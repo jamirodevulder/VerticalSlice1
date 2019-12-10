@@ -9,8 +9,12 @@ public class Damage : MonoBehaviour
     [SerializeField] private Sprite[] stagesSprites;
     [SerializeField] private ParticleSystem[] systems;
     [SerializeField] private GameObject particleRemover;
-     private float objectHealt;
+    [SerializeField] private bool PigAnimationPlay = false;
+    [SerializeField] private Animator dead;
+    [SerializeField] private particleSystemPlayScript AnimPlay;
+    private float objectHealt;
     private int index = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,7 @@ public class Damage : MonoBehaviour
             
              if (index < healtStages.Length)
             {
-                print(index);
+
                 gameObject.GetComponent<SpriteRenderer>().sprite = stagesSprites[index];
                 if (index < healtStages.Length -1)
                 {
@@ -40,8 +44,16 @@ public class Damage : MonoBehaviour
             {
                 systems[i].Play();
             }
-            particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
-            Destroy(this.gameObject);
+            if (!PigAnimationPlay)
+            {
+                particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                AnimPlay.playParticle("dead");
+                Destroy(this.gameObject);
+            }
 
         }
 
@@ -50,7 +62,7 @@ public class Damage : MonoBehaviour
     public void setObjectHealt(float healt)
     {
         objectHealt -= healt;
-        print(objectHealt);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -61,7 +73,7 @@ public class Damage : MonoBehaviour
         }
         if(collision.gameObject.tag == "egg")
         {
-            objectHealt -= collision.relativeVelocity.magnitude * 2;
+           // objectHealt -= collision.relativeVelocity.magnitude;
         }
         if(collision.gameObject.tag == "object")
         {
@@ -72,7 +84,7 @@ public class Damage : MonoBehaviour
         {
             float velocityY = gameObject.GetComponent<Rigidbody2D>().velocity.y * 1;
             objectHealt -= velocityY;
-            print(objectHealt);
+
         }
     }
 }

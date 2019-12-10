@@ -18,7 +18,7 @@ public class ExplosionForce : BirdClass
     [SerializeField] private AnimationClip boomtime;
     [SerializeField] private GameObject animObj;
     [SerializeField] private particleSystemPlayScript AnimPlay;
-    private bool SpaceBarExplode = true;
+    public bool abillity = false;
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
@@ -37,7 +37,7 @@ public class ExplosionForce : BirdClass
         colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer); // maakt een circel om de vogel heen van welke objecten force moeten krijgen
 
 
-            if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true && SpaceBarExplode) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
+            if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true  && abillity) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
             {
             playTimer = false;
             StartCoroutine(ExplosionTimer());
@@ -62,7 +62,7 @@ public class ExplosionForce : BirdClass
         if (playTimer == true) // als playtimer true is gaat hij audio spelen en explodeert daar na
         {
             startTimer = false; // als startTimer false is kan hij niet meer de IEnum kan aan roepen om iets te laten exploderen
-            SpaceBarExplode = false;
+           
             boom.SetTrigger("explode");
             yield return new WaitForSeconds(boom.GetCurrentAnimatorStateInfo(0).length);
 
@@ -78,13 +78,16 @@ public class ExplosionForce : BirdClass
 
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
-            rb = hit.GetComponent<Rigidbody2D>();
+            if (hit != null)
+            {
+                rb = hit.GetComponent<Rigidbody2D>();
 
-            AddExplosionForce(rb, power, transform.position, radius);
+                AddExplosionForce(rb, power, transform.position, radius);
+            }
         }
         canExplode = false;
 
-        AnimPlay.playParticle();
+        AnimPlay.playParticle("explode");
         onDestroy();
     }
 
@@ -100,19 +103,19 @@ public class ExplosionForce : BirdClass
             {
                 Damage block = rb.GetComponentInParent<Damage>();
 
-                if (explodingDistance < radius / 1.5)
+                if (explodingDistance < radius / 2)
                 {
                     block.setObjectHealt(block.maxhealt);
                 }
                 else
                 {
-                    if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
+                    if (explodingDistance > radius / 2 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 3);
+                        block.setObjectHealt((block.maxhealt / 3) * 2);
                     }
                     if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 3);
+                        block.setObjectHealt((block.maxhealt / 2) * 1);
                     }
 
                 }

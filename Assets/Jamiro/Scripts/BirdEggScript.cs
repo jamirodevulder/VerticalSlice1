@@ -7,7 +7,12 @@ public class BirdEggScript : BirdClass
     [SerializeField] GameObject egg;
     private GameManager gameManager;
     private bool eggGemaakt = true;
+    private bool wait = false;
+    public bool abillity = false;
     private CameraScript cameraScript;
+    [SerializeField] private ParticleSystem[] systems;
+    [SerializeField] private GameObject particleRemover;
+    [SerializeField] private Sprite pushedEggOut;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +23,12 @@ public class BirdEggScript : BirdClass
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && eggGemaakt)
+        if(Input.GetKeyDown(KeyCode.Space) && eggGemaakt && abillity)
         {
             eggGemaakt = false;
             Instantiate(egg, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
-            
+            StartCoroutine(DestroyTimer());
+            gameObject.GetComponent<SpriteRenderer>().sprite = pushedEggOut;
         }
    
     }
@@ -32,7 +38,7 @@ public class BirdEggScript : BirdClass
     {
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
-            eggGemaakt = false;
+            wait = true;
             StartCoroutine(DestroyTimer());
             
 
@@ -42,8 +48,13 @@ public class BirdEggScript : BirdClass
     private IEnumerator DestroyTimer()
     {
         yield return new WaitForSeconds(3);
-        //gameManager.increaseIndex();
-        yield return new WaitForSeconds(3);
+       
+        if (!wait)
+        {
+            yield return new WaitForSeconds(3);
+        }
+        systems[0].Play();
+        particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
         onDestroy();
     }
 }

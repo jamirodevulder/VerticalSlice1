@@ -16,9 +16,11 @@ public class bird : BirdClass
     
     [SerializeField] private SpringJoint2D sj;
     [SerializeField] private Rigidbody2D slingRb;
- 
+    [SerializeField] BirdEggScript kip;
+    [SerializeField] ExplosionForce bom;
 
-    
+
+
 
     private void Awake()
     {
@@ -90,8 +92,15 @@ public class bird : BirdClass
         isPressed = false;
         StartCoroutine(Release());
         rb.isKinematic = false;
-
         shot = true;
+        if(kip != null)
+        {
+            kip.abillity = true;
+        }
+        else
+        {
+            bom.abillity = true;
+        }
 
     }
 

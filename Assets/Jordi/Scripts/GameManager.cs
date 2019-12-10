@@ -23,19 +23,20 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-    
-        if ( birdsposition[index] != null && birdsposition[index].transform.position.x >= -8)
+        if (index < birdScript.Length)
         {
-            print("test");
-            CameraMoveToFort();
-            
+            if (birdsposition[index] != null && birdsposition[index].transform.position.x >= -8)
+            {
+                print("test");
+                CameraMoveToFort();
+
+            }
+            if (birdScript[index] == null)
+            {
+                index++;
+                CameraMoveToBirds();
+            }
         }
-        if(birdScript[index] == null)
-        {
-            index++;
-            CameraMoveToBirds();
-        }
-        
 
     }
 

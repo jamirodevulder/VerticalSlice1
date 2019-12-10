@@ -16,14 +16,14 @@ public class eggExplodeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 explosionPos = transform.position;  // zorgt er voor dat hij weet van waar hij de explosie moet schieten
-        colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer); // maakt een circel om de vogel heen van welke objecten force moeten krijgen
+        // maakt een circel om de vogel heen van welke objecten force moeten krijgen
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.position += Vector3.down;
+        Vector3 explosionPos = transform.position;  // zorgt er voor dat hij weet van waar hij de explosie moet schieten
+        colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer);
     }
 
 
@@ -41,11 +41,13 @@ public class eggExplodeScript : MonoBehaviour
 
     private IEnumerator explode()
     {
+        print("bijna boom");
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
-
+            
             if (hit != null)
             {
+                
                 rb = hit.GetComponent<Rigidbody2D>();
                 AddExplosionForce(rb, power, transform.position, radius);
             }
@@ -59,14 +61,15 @@ public class eggExplodeScript : MonoBehaviour
 
     void AddExplosionForce(Rigidbody2D rb, float explosionForce, Vector2 explodingPosition, float radius, float upwardsModifier = 0.0f, ForceMode2D mode = ForceMode2D.Impulse)
     {
-
+        
         if (canExplode == true)
         {
-
+            
             Vector2 explodingDirection = rb.position - explodingPosition;
             float explodingDistance = explodingDirection.magnitude;
             if (rb.GetComponentInParent<Damage>() != null)
             {
+                
                 Damage block = rb.GetComponentInParent<Damage>();
 
                 if (explodingDistance < radius / 2)
@@ -75,13 +78,15 @@ public class eggExplodeScript : MonoBehaviour
                 }
                 else
                 {
-                    if (explodingDistance > radius / 2 && explodingDistance < (radius / 4) * 3)
+                    if (explodingDistance > radius / 2 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 2);
+                        print("boom1");
+                        block.setObjectHealt((block.maxhealt / 2) * 1.5f);
                     }
                     if (explodingDistance > (radius / 4) * 3 && explodingDistance < radius)
                     {
-                        block.setObjectHealt((block.maxhealt / 3) * 1);
+                        print("boom2");
+                        block.setObjectHealt((block.maxhealt / 2) * 1);
                     }
 
                 }

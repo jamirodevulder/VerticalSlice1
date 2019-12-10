@@ -18,16 +18,16 @@ public class particleSystemPlayScript : MonoBehaviour
     {
         
     }
-    public void playParticle()
+    public void playParticle(string trigger)
     {
-        StartCoroutine(startBoom());
+        StartCoroutine(startBoom(trigger));
     }
 
 
-    private IEnumerator startBoom()
+    private IEnumerator startBoom(string trigger)
     {
         animObj.GetComponent<SpriteRenderer>().enabled = true;
-        explodeAnim.SetTrigger("explode");
+        explodeAnim.SetTrigger(trigger);
         yield return new WaitForSeconds(explodeAnim.GetCurrentAnimatorStateInfo(0).length / 2.4f);
         Destroy(gameObject);
     }
