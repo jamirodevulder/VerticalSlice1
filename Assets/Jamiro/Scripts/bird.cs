@@ -78,10 +78,20 @@ public class bird : BirdClass
         ropes.DrawLines();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
+        {
+
+
+            rb.constraints = RigidbodyConstraints2D.None;
+        }
+    }
     private void OnMouseDown()
     {
 
         rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         isPressed = true;
         rb.isKinematic = true;
         

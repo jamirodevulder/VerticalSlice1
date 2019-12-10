@@ -13,10 +13,6 @@ public class ContinueButton : UIScript
 
     private void Update()
     {
-        if (pauseScript.gameWon == true)
-        {
-            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x + 2f, mainCamera.transform.position.y - 2.5f, 0);
-        }
     }
 
     private void OnClick()

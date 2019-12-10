@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class RestartButton : UIScript
 {
     [SerializeField] private PauseButton pauseScript;
+    [SerializeField] private GameObject Panel;
     private void Awake()
     {
         AddListener(RestartKnopClicked);
@@ -16,12 +17,12 @@ public class RestartButton : UIScript
     {
         if (pauseScript.gameWon == true)
         {
-            clickableButton.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y - 2.5f, 0);
+           // clickableButton.transform.position = new Vector3(Panel.transform.position.x, Panel.transform.position.y, Panel.transform.position.z);
         }
     }
 
     private void RestartKnopClicked()
     {
-        SceneManager.LoadScene("JoriScene");
+        SceneManager.LoadScene("Main");
     }
 }

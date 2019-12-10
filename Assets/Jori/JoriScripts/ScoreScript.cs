@@ -16,6 +16,10 @@ public class ScoreScript : UIScript
     [SerializeField] private StreamWriter write;
     [SerializeField] private StreamReader read;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject higscorePlace;
+    [SerializeField] private GameObject scorePlace;
+
+    public bool allPigsDown = true;
 
     private void Awake()
     {
@@ -32,22 +36,23 @@ public class ScoreScript : UIScript
             highScoreText.text = "Highscore: " + highScore;
         }
         read.Close(); //Stopt met lezen
-        write = new StreamWriter(path, false); //maakt een streamwriter aan
+        //maakt een streamwriter aan
         UpdateHighScore(highScore);
     }
 
 
     private void Update()
     {
-        if (pauseScript.gameWon)
+        if (pauseScript.gameWon || pauseScript.gameLose)
         {
-            scoreText.transform.position = new Vector3(mainCamera.transform.position.x - 0.2f, mainCamera.transform.position.y - 0.8f, 0);
+            Time.timeScale = 0;
+            scoreText.transform.position = scorePlace.transform.position;
             scoreText.text = "Score:" + "\n" + score;
 
-            highScoreText.transform.position = new Vector3(mainCamera.transform.position.x + 2f, mainCamera.transform.position.y + 2f, 0);
+            highScoreText.transform.position = higscorePlace.transform.position;
             highScoreText.text = "Highscore:" + "\n" + highScore;
             //29583 voor 1 ster, 59166 voor 2 sterren en 88749 voor 3 sterren
-            if (highScore >= 29583 && highScore < 59166)
+            if (highScore >= 29583 && highScore < 59166 && allPigsDown)
             {
 
             }
@@ -59,23 +64,27 @@ public class ScoreScript : UIScript
             {
 
             }
-
+            UpdateHighScore(highScore);
         }
     }
     public void AddScore(float tempScore) //Voegt specifieke score toe, wanneer hoger dan score word de highscore geüpdatet
     {
         score += tempScore;
-        scoreText.text = "Score: " + score;
+        int realscore = Mathf.RoundToInt(score);
+        scoreText.text = "Score: " + realscore;
         if(score > highScore)
         {
             highScore = score;
-            highScoreText.text = "Highscore: " + highScore;
+            int realhighscore = Mathf.RoundToInt(highScore);
+            highScoreText.text = "Highscore: " + realhighscore;
         }
     }
 
     public void UpdateHighScore(float tempScore) //Updatet de highscore, gebruik dit wanneer het hele spel afgelopen is
     {
-        highScore = tempScore;
+        int realhighscore = Mathf.RoundToInt(highScore);
+        highScore = realhighscore;
+        write = new StreamWriter(path, false);
         write.WriteLine(tempScore.ToString());
         write.Close();
     }

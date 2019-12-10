@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class PauseButton : UIScript
 {
-    [SerializeField] public bool gameWon; //Voor als het spel gewonnen is
+    [SerializeField] public bool gameWon;
+    [SerializeField] public bool gameLose;//Voor als het spel gewonnen is
     [SerializeField] public GameObject[] buttonGameObjects = new GameObject[8]; //Array van GameObjects, parents van knoppen
     [SerializeField] private bool unpaused; //unpaused true is dat het spel niet gepauzeerd is, false is gepauzeerd
     [SerializeField] private RectTransform buttonTransform;
     [SerializeField] private Sprite pausedImage; //Image voor de pauzeknop als het spel op pauze staat
     [SerializeField] private Sprite unpausedImage; //Image voor de pauzeknop als het spel niet op pauze staat
+    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject nextButton;
+    [SerializeField] private Text winscreentext;
 
     private void Awake()
     {
@@ -22,7 +26,6 @@ public class PauseButton : UIScript
         buttonGameObjects[5] = GameObject.Find("WSGameObject"); //Winscherm
         buttonGameObjects[6] = GameObject.Find("CBGameObject"); //Continueknop
         buttonGameObjects[5].SetActive(false);
-        buttonGameObjects[6].SetActive(false);
         SetObjectState(false);
         //PauzeButton gerelateerde code
         clickableButton = GetComponent<Button>();
@@ -46,6 +49,19 @@ public class PauseButton : UIScript
         {
             returnPosition = clickableButton.transform.position; //Neemt huidige positie van de pauzeknop wanneer het niet gepauzeerd is, als de camera beweegt blijft de positie hetzelfde
         }
+        if(gameWon)
+        {
+            buttonGameObjects[5].SetActive(true);
+
+            this.gameObject.SetActive(false);
+        }
+        if(gameLose)
+        {
+            winscreentext.text = "Try Again";
+            buttonGameObjects[5].SetActive(true);
+            nextButton.SetActive(false);
+            
+        }
     }
 
     private void OnButtonClick()
@@ -56,8 +72,8 @@ public class PauseButton : UIScript
             {
                 case true:
                     PauseGame(false, 0, pausedImage);
-                    ResizeButton(77, 71);
-                    clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 6.9f, mainCamera.transform.position.y - 0.2f, 0); //Z positie wordt anders -400
+                    ResizeButton(70, 70);
+                    clickableButton.transform.position = new Vector3(panel.transform.position.x, panel.transform.position.y, 0); //Z positie wordt anders -400
                     SetObjectState(true);
                     break;
 

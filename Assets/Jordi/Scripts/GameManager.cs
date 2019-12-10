@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private CameraScript cameraScript;
     [SerializeField] private bird[] birdScript;
+    [SerializeField] private ScoreScript pigsdown;
     private ExplosionForce explosionScript;
     private ParticleBird particleScript;
     [SerializeField] RopeScript slingshot;
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     private bool birdisShot;
     private bool cameraMove = true;
     private int index = 0;
+    [SerializeField] private GameObject[] pigs;
+    private int pigDeath;
+    private bool pigsDontMove = true;
+    [SerializeField] PauseButton win;
 
 
     private void Awake()
@@ -33,11 +38,25 @@ public class GameManager : MonoBehaviour
             }
             if (birdScript[index] == null)
             {
-                index++;
+                if (index < birdScript.Length)
+                {
+                    index++;
+                }
                 CameraMoveToBirds();
+                
             }
         }
+        print(index);
+        if (index == birdScript.Length && pigDeath < pigs.Length - 1)
+        {
+          
+           StartCoroutine(WaitForLose());
+                             
+        }
+        countPig();
+      
 
+       
     }
 
     public void CameraMoveToFort()
@@ -54,13 +73,40 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    private IEnumerator WaitForLose()
+    {
+        yield return new WaitForSeconds(3f);
+        if (!win.gameWon)
+        {
+            pigsdown.allPigsDown = false;
+            win.gameLose = true;
+        }
+    }
     private IEnumerator TimerNewBird()
     {
         yield return new WaitForSeconds(2);
-        
-        slingshot.newBird(index);
-        
+        if (index != birdScript.Length)
+        {
+            slingshot.newBird(index);
+        }
     }
+    private void countPig()
+    {
+        pigDeath = 0;
+        for (int i = 0; i < pigs.Length; i++)
+        {
+            if (pigs[i] == null)
+            {
+                pigDeath++;
+                if (pigDeath == pigs.Length)
+                {
+                    win.gameWon = true;
+                    
+                }
+            }
+        }
 
+    }
     
 }

@@ -12,15 +12,23 @@ public class Damage : MonoBehaviour
     [SerializeField] private bool PigAnimationPlay = false;
     [SerializeField] private Animator dead;
     [SerializeField] private particleSystemPlayScript AnimPlay;
+    [SerializeField] private ScoreScript scoreScript;
     private float objectHealt;
     private int index = 0;
+    private bool getDamage = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(waitBeforeDamaged());
         objectHealt = maxhealt;
+        scoreScript = GameObject.Find("HighScoreText").GetComponent<ScoreScript>();
     }
-
+    private IEnumerator waitBeforeDamaged()
+    {
+        yield return new WaitForSeconds(5f);
+        getDamage = true;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -52,17 +60,24 @@ public class Damage : MonoBehaviour
             else
             {
                 AnimPlay.playParticle("dead");
+                scoreScript.AddScore(5000);
                 Destroy(this.gameObject);
             }
 
         }
-
+        if(this.gameObject.transform.position.y < -10)
+        {
+            setObjectHealt(objectHealt);
+        }
 
     }
     public void setObjectHealt(float healt)
     {
-        objectHealt -= healt;
-
+        if (getDamage)
+        {
+            objectHealt -= healt;
+            scoreScript.AddScore(healt * 75);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

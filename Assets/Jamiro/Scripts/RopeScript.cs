@@ -65,25 +65,26 @@ public class RopeScript : MonoBehaviour
     {
 
 
-        
-        birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, -5f);
-        birds[birdIndex].GetComponentInChildren<bird>().enabled = true;
-        birds[birdIndex].GetComponentInChildren<SpringJoint2D>().enabled = true;
-        birds[birdIndex].GetComponentInChildren<PolygonCollider2D>().enabled = true;
-        birds[birdIndex].GetComponentInChildren<Rigidbody2D>().isKinematic = false;
-        birds[birdIndex].GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        birds[birdIndex].GetComponentInChildren<SpringJoint2D>().connectedBody = GameObject.Find("middelpunt").GetComponent<Rigidbody2D>();
-
-        if (birds[birdIndex].GetComponentInChildren<ExplosionForce>() != null)
+        if (birds[birdIndex] != null)
         {
-            birds[birdIndex].GetComponentInChildren<ExplosionForce>().enabled = true;
-        }
-        else
-        {
+            birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, -5f);
+            birds[birdIndex].GetComponentInChildren<bird>().enabled = true;
+            birds[birdIndex].GetComponentInChildren<SpringJoint2D>().enabled = true;
+            birds[birdIndex].GetComponentInChildren<PolygonCollider2D>().enabled = true;
+            birds[birdIndex].GetComponentInChildren<Rigidbody2D>().isKinematic = false;
+            birds[birdIndex].GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            birds[birdIndex].GetComponentInChildren<SpringJoint2D>().connectedBody = GameObject.Find("middelpunt").GetComponent<Rigidbody2D>();
 
-            birds[birdIndex].GetComponentInChildren<BirdEggScript>().enabled = true;
-        }
+            if (birds[birdIndex].GetComponentInChildren<ExplosionForce>() != null)
+            {
+                birds[birdIndex].GetComponentInChildren<ExplosionForce>().enabled = true;
+            }
+            else
+            {
 
+                birds[birdIndex].GetComponentInChildren<BirdEggScript>().enabled = true;
+            }
+        }
 
 
     }
