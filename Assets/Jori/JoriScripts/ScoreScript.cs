@@ -18,6 +18,9 @@ public class ScoreScript : UIScript
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject higscorePlace;
     [SerializeField] private GameObject scorePlace;
+    [SerializeField] private Image[] starsImg;
+     private Sprite[] stars;
+    [SerializeField] private Sprite starsprite;
 
     public bool allPigsDown = true;
 
@@ -47,22 +50,41 @@ public class ScoreScript : UIScript
         {
             Time.timeScale = 0;
             scoreText.transform.position = scorePlace.transform.position;
-            scoreText.text = "Score:" + "\n" + score;
-
+            int realscore = Mathf.RoundToInt(score);
+            scoreText.text = "Score:" + "\n" + realscore;
+            
             highScoreText.transform.position = higscorePlace.transform.position;
             highScoreText.text = "Highscore:" + "\n" + highScore;
             //29583 voor 1 ster, 59166 voor 2 sterren en 88749 voor 3 sterren
+            if (score >= 29583 && score < 59166 && allPigsDown)
+            {
+                starsImg[0].GetComponent<Image>().sprite =  starsprite;
+            }
+            else if (score >= 59166 && score < 88749 && allPigsDown)
+            {
+                starsImg[0].GetComponent<Image>().sprite =  starsprite;
+                starsImg[1].GetComponent<Image>().sprite =  starsprite;
+            }
+            else if (score >= 88749 && allPigsDown)
+            {
+                starsImg[0].GetComponent<Image>().sprite = starsprite;
+                starsImg[1].GetComponent<Image>().sprite = starsprite;
+                starsImg[2].GetComponent<Image>().sprite = starsprite;
+            }
             if (highScore >= 29583 && highScore < 59166 && allPigsDown)
             {
-
+                starsImg[3].GetComponent<Image>().sprite = starsprite;
             }
-            else if (highScore >= 59166 && highScore < 88749)
+            else if (highScore >= 59166 && highScore < 88749 && allPigsDown)
             {
-
+                starsImg[3].GetComponent<Image>().sprite = starsprite;
+                starsImg[4].GetComponent<Image>().sprite = starsprite;
             }
-            else if (highScore >= 88749)
+            else if (highScore >= 88749 && allPigsDown)
             {
-
+                starsImg[3].GetComponent<Image>().sprite = starsprite;
+                starsImg[4].GetComponent<Image>().sprite = starsprite;
+                starsImg[5].GetComponent<Image>().sprite = starsprite;
             }
             UpdateHighScore(highScore);
         }
@@ -84,7 +106,7 @@ public class ScoreScript : UIScript
     {
         int realhighscore = Mathf.RoundToInt(highScore);
         highScore = realhighscore;
-        write = new StreamWriter(path, false);
+         write = new StreamWriter(path, false);
         write.WriteLine(tempScore.ToString());
         write.Close();
     }

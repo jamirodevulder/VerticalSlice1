@@ -13,7 +13,7 @@ public class bird : BirdClass
     private float maxDragDistance = 2f;
     public bool shot = false;
 
-    
+    [SerializeField] private Sprite[] stars;
     [SerializeField] private SpringJoint2D sj;
     [SerializeField] private Rigidbody2D slingRb;
     [SerializeField] BirdEggScript kip;
