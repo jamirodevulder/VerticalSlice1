@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class ScoreScript : MonoBehaviour
+public class ScoreScript : UIScript
 {
     private float score;
+    private float highScore;
     private string highScoreString;
     private string path;
+    [SerializeField] private PauseButton pauseScript;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;
-    [SerializeField] private float highScore;
     [SerializeField] private StreamWriter write;
     [SerializeField] private StreamReader read;
     [SerializeField] private GameObject enemy;
 
     private void Awake()
     {
+        mainCamera = FindObjectOfType<Camera>();
         path = "Assets/Scenes/Highscore.txt"; //locatie van het highscore.txt bestand
         enemy = GameObject.Find("Enemy");
         score = 0;
@@ -35,6 +37,31 @@ public class ScoreScript : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (pauseScript.gameWon)
+        {
+            scoreText.transform.position = new Vector3(mainCamera.transform.position.x - 0.2f, mainCamera.transform.position.y - 0.8f, 0);
+            scoreText.text = "Score:" + "\n" + score;
+
+            highScoreText.transform.position = new Vector3(mainCamera.transform.position.x + 2f, mainCamera.transform.position.y + 2f, 0);
+            highScoreText.text = "Highscore:" + "\n" + highScore;
+            //29583 voor 1 ster, 59166 voor 2 sterren en 88749 voor 3 sterren
+            if (highScore >= 29583 && highScore < 59166)
+            {
+
+            }
+            else if (highScore >= 59166 && highScore < 88749)
+            {
+
+            }
+            else if (highScore >= 88749)
+            {
+
+            }
+
+        }
+    }
     public void AddScore(float tempScore) //Voegt specifieke score toe, wanneer hoger dan score word de highscore geüpdatet
     {
         score += tempScore;

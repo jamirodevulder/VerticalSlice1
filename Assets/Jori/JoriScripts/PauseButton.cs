@@ -50,22 +50,24 @@ public class PauseButton : UIScript
 
     private void OnButtonClick()
     {
-        Debug.Log("Klik");
-        switch (unpaused)
+        if (!gameWon)
         {
-            case true:
-                PauseGame(false, 0, pausedImage);
-                ResizeButton(77, 71);
-                clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 7.3f, mainCamera.transform.position.y - 0.2f, 0); //Z positie wordt anders -400
-                SetObjectState(true);
-                break;
+            switch (unpaused)
+            {
+                case true:
+                    PauseGame(false, 0, pausedImage);
+                    ResizeButton(77, 71);
+                    clickableButton.transform.position = new Vector3(mainCamera.transform.position.x - 6.9f, mainCamera.transform.position.y - 0.2f, 0); //Z positie wordt anders -400
+                    SetObjectState(true);
+                    break;
 
-            case false:
-                PauseGame(true, 1, unpausedImage);
-                ResizeButton(144, 134);
-                clickableButton.transform.position = returnPosition;
-                SetObjectState(false);
-                break;
+                case false:
+                    PauseGame(true, 1, unpausedImage);
+                    ResizeButton(144, 134);
+                    clickableButton.transform.position = returnPosition;
+                    SetObjectState(false);
+                    break;
+            }
         }
     }
 
