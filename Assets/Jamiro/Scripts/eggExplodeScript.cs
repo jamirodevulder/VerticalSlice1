@@ -43,11 +43,12 @@ public class eggExplodeScript : MonoBehaviour
     {
         foreach (Collider2D hit in colliders) // hier zorgt hij er voor dat hij een force aan alle objecten geeft die in de overlap shere zitten
         {
-            
-            
+
+            if (hit != null)
+            {
                 rb = hit.GetComponent<Rigidbody2D>();
                 AddExplosionForce(rb, power, transform.position, radius);
-            
+            }
         }
         yield return new WaitForSeconds(0.1f);
         Destroy(this.gameObject);

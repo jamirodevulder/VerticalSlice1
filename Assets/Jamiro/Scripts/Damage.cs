@@ -23,25 +23,27 @@ public class Damage : MonoBehaviour
         if(objectHealt <= healtStages[index])
         {
             
-            if (objectHealt <= 0)
+             if (index < healtStages.Length)
             {
-                for (int i = 0; i < systems.Length; i++)
-                {
-                    systems[i].Play();
-                }
-                particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
-                Destroy(this.gameObject);
-
-            }
-            if (index  + 1 < healtStages.Length)
-            {
-                
+                print(index);
                 gameObject.GetComponent<SpriteRenderer>().sprite = stagesSprites[index];
-                index++;
+                if (index < healtStages.Length -1)
+                {
+                    index++;
+                }
             }
         }
- 
 
+        if (objectHealt <= 0)
+        {
+            for (int i = 0; i < systems.Length; i++)
+            {
+                systems[i].Play();
+            }
+            particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
+            Destroy(this.gameObject);
+
+        }
 
 
     }

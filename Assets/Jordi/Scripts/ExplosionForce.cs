@@ -14,6 +14,10 @@ public class ExplosionForce : BirdClass
     [SerializeField] private bool canExplode = true; // kijk of hij objecten nog aangetast kunnen worden
     [SerializeField] private bool playTimer = true; // kijkt of hij klaar is met audio spelen
     [SerializeField] private bool startTimer = true; // kijkt of hij de audio mag spelen of gelijk moet exploderen
+    [SerializeField] private Animator boom;
+    [SerializeField] private AnimationClip boomtime;
+    [SerializeField] private GameObject animObj;
+    [SerializeField] private particleSystemPlayScript AnimPlay;
     private bool SpaceBarExplode = true;
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
@@ -23,6 +27,7 @@ public class ExplosionForce : BirdClass
     private void Start()
     {
         //playerRb.AddForce(new Vector2(300*playerRb.mass,45*playerRb.mass));
+       
     }
 
     void Update()
@@ -36,7 +41,7 @@ public class ExplosionForce : BirdClass
             {
             playTimer = false;
             StartCoroutine(ExplosionTimer());
-
+            
             }
     }
 
@@ -58,9 +63,8 @@ public class ExplosionForce : BirdClass
         {
             startTimer = false; // als startTimer false is kan hij niet meer de IEnum kan aan roepen om iets te laten exploderen
             SpaceBarExplode = false;
-            explosieAudio.clip = explosieTimer;
-            explosieAudio.Play();
-            yield return new WaitForSeconds(explosieAudio.clip.length);
+            boom.SetTrigger("explode");
+            yield return new WaitForSeconds(boom.GetCurrentAnimatorStateInfo(0).length);
 
             playTimer = false;
 
@@ -79,8 +83,8 @@ public class ExplosionForce : BirdClass
             AddExplosionForce(rb, power, transform.position, radius);
         }
         canExplode = false;
-        particleHandler.GetComponent<particleSystemPlayScript>().playParticle();
 
+        AnimPlay.playParticle();
         onDestroy();
     }
 
@@ -124,7 +128,7 @@ public class ExplosionForce : BirdClass
                 rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
             }
 
-            explosieAudio.Play();
+            
             if (upwardsModifier == 0)
             {
                 explodingDirection /= explodingDistance;

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class particleSystemPlayScript : MonoBehaviour
 {
-    [SerializeField] ParticleSystem boomparticle;
-    [SerializeField] AudioSource audioSource;
-    
+    [SerializeField] private GameObject animObj;
+    private Animator explodeAnim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        explodeAnim = animObj.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,9 +26,9 @@ public class particleSystemPlayScript : MonoBehaviour
 
     private IEnumerator startBoom()
     {
-        boomparticle.Play();
-        audioSource.Play();
-        yield return new WaitForSeconds(boomparticle.main.duration);
+        animObj.GetComponent<SpriteRenderer>().enabled = true;
+        explodeAnim.SetTrigger("explode");
+        yield return new WaitForSeconds(explodeAnim.GetCurrentAnimatorStateInfo(0).length / 2.4f);
         Destroy(gameObject);
     }
 }
