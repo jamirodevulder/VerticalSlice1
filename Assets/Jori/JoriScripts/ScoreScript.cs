@@ -21,7 +21,7 @@ public class ScoreScript : UIScript
     [SerializeField] private Image[] starsImg;
      private Sprite[] stars;
     [SerializeField] private Sprite starsprite;
-
+    [SerializeField] private int firsthighscore;
     public bool allPigsDown = true;
 
     private void Awake()
@@ -37,6 +37,7 @@ public class ScoreScript : UIScript
             highScoreString = read.ReadLine(); //leest het bestand
             highScore = float.Parse(highScoreString); //zet string om in een float
             highScoreText.text = "Highscore: " + highScore;
+            firsthighscore = int.Parse(highScoreString);
         }
         read.Close(); //Stopt met lezen
         //maakt een streamwriter aan
@@ -52,9 +53,19 @@ public class ScoreScript : UIScript
             scoreText.transform.position = scorePlace.transform.position;
             int realscore = Mathf.RoundToInt(score);
             scoreText.text = "Score:" + "\n" + realscore;
-            
-            highScoreText.transform.position = higscorePlace.transform.position;
-            highScoreText.text = "Highscore:" + "\n" + highScore;
+            if (allPigsDown)
+            {
+                highScoreText.transform.position = higscorePlace.transform.position;
+                highScoreText.text = "Highscore:" + "\n" + highScore;
+                UpdateHighScore(highScore);
+            }
+            else
+            {
+                highScore = firsthighscore;
+                highScoreText.transform.position = higscorePlace.transform.position;
+                highScoreText.text = "Highscore:" + "\n" + highScore;
+
+            }
             //29583 voor 1 ster, 59166 voor 2 sterren en 88749 voor 3 sterren
             if (score >= 29583 && score < 59166 && allPigsDown)
             {
@@ -71,22 +82,22 @@ public class ScoreScript : UIScript
                 starsImg[1].GetComponent<Image>().sprite = starsprite;
                 starsImg[2].GetComponent<Image>().sprite = starsprite;
             }
-            if (highScore >= 29583 && highScore < 59166 && allPigsDown)
+            if (highScore >= 29583 && highScore < 59166 )
             {
                 starsImg[3].GetComponent<Image>().sprite = starsprite;
             }
-            else if (highScore >= 59166 && highScore < 88749 && allPigsDown)
+            else if (highScore >= 59166 && highScore < 88749 )
             {
                 starsImg[3].GetComponent<Image>().sprite = starsprite;
                 starsImg[4].GetComponent<Image>().sprite = starsprite;
             }
-            else if (highScore >= 88749 && allPigsDown)
+            else if (highScore >= 88749 )
             {
                 starsImg[3].GetComponent<Image>().sprite = starsprite;
                 starsImg[4].GetComponent<Image>().sprite = starsprite;
                 starsImg[5].GetComponent<Image>().sprite = starsprite;
             }
-            UpdateHighScore(highScore);
+            
         }
     }
     public void AddScore(float tempScore) //Voegt specifieke score toe, wanneer hoger dan score word de highscore geüpdatet
