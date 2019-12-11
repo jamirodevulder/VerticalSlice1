@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
 
            StartCoroutine(WaitForLose());
-            followBirds.followBird++;
+            
 
         }
         countPig();
@@ -66,8 +66,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         CameraMoveToBirds();
+        followBirds.followBird++;
 
-       
+
     }
     public void CameraMoveToFort()
     {
