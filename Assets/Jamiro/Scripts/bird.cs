@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class bird : BirdClass
 {
+    [SerializeField] AudioSource vogelAudio;
+    [SerializeField] private AudioClip vogelLanceer;
+    [SerializeField] private AudioClip slingshotPull;
     [SerializeField] private LineRenderer[] lines;
     [SerializeField] private bool isPressed;
 
@@ -16,6 +19,7 @@ public class bird : BirdClass
     
     [SerializeField] private SpringJoint2D sj;
     [SerializeField] private Rigidbody2D slingRb;
+    [SerializeField]  private FollowBirds followBirds;
  
 
     
@@ -33,7 +37,7 @@ public class bird : BirdClass
 
     private void Start()
     {
-        
+        vogelAudio.clip = slingshotPull;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         releaseDelay = 1 / (sj.frequency * 4);
         isPressed = false;
@@ -78,7 +82,7 @@ public class bird : BirdClass
 
     private void OnMouseDown()
     {
-
+        vogelAudio.Play();
         rb.constraints = RigidbodyConstraints2D.None;
         isPressed = true;
         rb.isKinematic = true;
@@ -87,11 +91,21 @@ public class bird : BirdClass
 
     private void OnMouseUp()
     {
+        vogelAudio.clip = vogelLanceer;
+        vogelAudio.Play();
+        if (followBirds.followBird == 0)
+        {
+            followBirds.unevenBirds.Play();
+        }
+        if (followBirds.followBird == 1)
+        {
+            followBirds.evenBirds.Play();
+        }
         isPressed = false;
         StartCoroutine(Release());
         rb.isKinematic = false;
-
         shot = true;
+
 
     }
 
@@ -100,12 +114,5 @@ public class bird : BirdClass
         yield return new WaitForSeconds(releaseDelay);
         sj.enabled = false;
         shot = false;
-
-        
-
-
-
-
-
     }
 }

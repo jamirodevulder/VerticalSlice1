@@ -8,6 +8,9 @@ public class BirdEggScript : BirdClass
     private GameManager gameManager;
     private bool eggGemaakt = true;
     private CameraScript cameraScript;
+    [SerializeField] FollowBirds followBirds;
+    [SerializeField] private GameObject Cloud;
+    private GameObject cloud;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,20 @@ public class BirdEggScript : BirdClass
         if(Input.GetKeyDown(KeyCode.Space) && eggGemaakt)
         {
             eggGemaakt = false;
+            if (followBirds.followBird == 0)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+            }
+            if (followBirds.followBird == 1)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             Instantiate(egg, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
             
         }
@@ -32,9 +49,22 @@ public class BirdEggScript : BirdClass
     {
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
+
             eggGemaakt = false;
+
             StartCoroutine(DestroyTimer());
-            
+            if (followBirds.followBird == 0)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+            }
+            if (followBirds.followBird == 1)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
 
         }
     }

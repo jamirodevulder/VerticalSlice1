@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     private ExplosionForce explosionScript;
     private ParticleBird particleScript;
     [SerializeField] RopeScript slingshot;
+    [SerializeField] FollowBirds followBirds;
     [SerializeField] private GameObject[] birdsposition;
     private bool birdisShot;
     private bool cameraMove = true;
-    private int index = 0;
+    public int index = 0;
 
 
     private void Awake()
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             index++;
             CameraMoveToBirds();
+            followBirds.followBird++;
         }
         
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     public void increaseIndex()
     {
         index++;
+        
     }
     
 }

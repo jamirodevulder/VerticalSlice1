@@ -9,7 +9,10 @@ public class Damage : MonoBehaviour
     [SerializeField] private Sprite[] stagesSprites;
     [SerializeField] private ParticleSystem[] systems;
     [SerializeField] private GameObject particleRemover;
-     private float objectHealt;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] private AudioClip breakaudio;
+    [SerializeField] private AudioClip damagedAudio;
+    private float objectHealt;
     private int index = 0;
     // Start is called before the first frame update
     void Start()
@@ -29,13 +32,16 @@ public class Damage : MonoBehaviour
                 {
                     systems[i].Play();
                 }
+                audioSource.clip = breakaudio;
+                audioSource.Play();
                 particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
                 Destroy(this.gameObject);
 
             }
             if (index  + 1 < healtStages.Length)
             {
-                
+                audioSource.clip = damagedAudio;
+                audioSource.Play();
                 gameObject.GetComponent<SpriteRenderer>().sprite = stagesSprites[index];
                 index++;
             }
@@ -70,7 +76,7 @@ public class Damage : MonoBehaviour
         {
             float velocityY = gameObject.GetComponent<Rigidbody2D>().velocity.y * 1;
             objectHealt -= velocityY;
-            print(objectHealt);
+            //print(objectHealt);
         }
     }
 }

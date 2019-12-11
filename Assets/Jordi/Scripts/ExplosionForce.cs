@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ExplosionForce : BirdClass
 {
-    [SerializeField] private float radius = 5.0F; // zorgt voor radius waar hij objecten aantast
-    [SerializeField] private float power = 10.0F; // zorgt voor explosie power
+
+    [SerializeField] private float radius; // zorgt voor radius waar hij objecten aantast
+    [SerializeField] private float power; // zorgt voor explosie power
+    [SerializeField] private GameObject Cloud;
     [SerializeField] private LayerMask obstacleLayer; // layer van obstacels zoals dozen
     [SerializeField] private LayerMask groundLayer; // layer van de vloer
     [SerializeField] private AudioSource explosieAudio; // audio die de explosie af speelt
@@ -15,6 +17,7 @@ public class ExplosionForce : BirdClass
     [SerializeField] private bool playTimer = true; // kijkt of hij klaar is met audio spelen
     [SerializeField] private bool startTimer = true; // kijkt of hij de audio mag spelen of gelijk moet exploderen
     private bool SpaceBarExplode = true;
+    [SerializeField] FollowBirds followBirds;
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
@@ -35,8 +38,21 @@ public class ExplosionForce : BirdClass
             if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true && SpaceBarExplode) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
             {
             playTimer = false;
+            if (followBirds.followBird == 0)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+            }
+            if (followBirds.followBird == 1)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             StartCoroutine(ExplosionTimer());
-
             }
     }
 
@@ -56,6 +72,18 @@ public class ExplosionForce : BirdClass
 
         if (playTimer == true) // als playtimer true is gaat hij audio spelen en explodeert daar na
         {
+            if (followBirds.followBird == 0)
+            {
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+
+
+            }
+            if (followBirds.followBird == 1)
+            {
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             startTimer = false; // als startTimer false is kan hij niet meer de IEnum kan aan roepen om iets te laten exploderen
             SpaceBarExplode = false;
             explosieAudio.clip = explosieTimer;

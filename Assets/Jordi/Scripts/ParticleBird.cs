@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ParticleBird : MonoBehaviour
 {
-    [SerializeField] private GameObject bird;
     [SerializeField] private float particleSize = 0.1f;
     [SerializeField] private int sizeCounter;
     [SerializeField] private float emissionRate = 10;
-    private ParticleSystem thisParticle;
+    [SerializeField] private ParticleSystem thisParticle;
     private ParticleSystem.MainModule thisPSMain;
     private ParticleSystem.EmissionModule thisPSEmission;
     
@@ -26,7 +25,6 @@ public class ParticleBird : MonoBehaviour
     void Update()
     {
         Debug.Log(thisPSEmission.rateOverTime);
-        transform.position = bird.transform.position;
         //particle size
         
         thisPSMain.startSize = particleSize;
