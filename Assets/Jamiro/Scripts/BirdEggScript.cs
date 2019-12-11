@@ -67,6 +67,7 @@ public class BirdEggScript : BirdClass
             wait = true;
             
             StartCoroutine(DestroyTimer());
+
             if (followBirds.followBird == 0 && eggGemaakt )
             {
                 Destroy(GameObject.Find("Cloud(Clone)"));
@@ -79,8 +80,9 @@ public class BirdEggScript : BirdClass
                 followBirds.unevenBirds.Clear();
                 followBirds.evenBirds.Pause();
             }
-            eggGemaakt = false;
 
+
+            eggGemaakt = false;
         }
     }
 

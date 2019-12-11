@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private int pigDeath;
     private bool pigsDontMove = true;
     [SerializeField] PauseButton win;
-
+    public bool move = true;
 
     private void Awake()
     {
@@ -33,18 +33,19 @@ public class GameManager : MonoBehaviour
         {
             if (birdsposition[index] != null && birdsposition[index].transform.position.x >= -8)
             {
-
+                
                 CameraMoveToFort();
 
             }
-            if (birdScript[index] == null)
+            if (birdScript[index] == null )
             {
+                
                 if (index < birdScript.Length)
                 {
                     index++;
                 }
-                CameraMoveToBirds();
-                followBirds.followBird++;
+                
+                StartCoroutine(wait());
 
             }
         }
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         {
 
            StartCoroutine(WaitForLose());
+            followBirds.followBird++;
 
         }
         countPig();
@@ -60,7 +62,13 @@ public class GameManager : MonoBehaviour
 
 
     }
+    public IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
+        CameraMoveToBirds();
 
+       
+    }
     public void CameraMoveToFort()
     {
 
@@ -78,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForLose()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         if (!win.gameWon)
         {
             pigsdown.allPigsDown = false;

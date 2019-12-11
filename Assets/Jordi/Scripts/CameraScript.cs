@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private Vector3 fortPositionX;
-    [SerializeField] private Vector3 birdPositionX;
+    [SerializeField] public Vector3 fortPositionX;
+    [SerializeField] public Vector3 birdPositionX;
     [SerializeField] public float dist =1;
-    private bool move = false;
+    
+
 
 
     private float pointsRadius;
@@ -39,11 +40,10 @@ public class CameraScript : MonoBehaviour
 
     public IEnumerator MoveToBird()
     {
-
-        yield return new WaitForSeconds(3.5f);
+        
+            yield return new WaitForSeconds(3);
         while ( transform.position.x > birdPositionX.x)
         {
-                move = true;
             yield return new WaitForSeconds(0.0000001f);
             transform.position -= new Vector3(0.3f, 0);
             if(transform.position.y > birdPositionX.y)
@@ -58,9 +58,9 @@ public class CameraScript : MonoBehaviour
         }
 
         dist = 1;
-        move = false;
 
-      
+
+
     }
 
     public IEnumerator MoveToFort()
@@ -68,7 +68,6 @@ public class CameraScript : MonoBehaviour
         
         while (transform.position.x < fortPositionX.x)
         {
-            move = true;
             yield return new WaitForSeconds(0.01f);
             dist -= (Time.deltaTime*2) * dist;
             this.transform.position = Vector3.Lerp(new Vector3(fortPositionX.x, 2f, fortPositionX.z), new Vector3(birdPositionX.x, 1f, birdPositionX.z), dist);
@@ -80,7 +79,7 @@ public class CameraScript : MonoBehaviour
 
         }
 
-        move = false;
+        
 
     }
 

@@ -21,6 +21,7 @@ public class ExplosionForce : BirdClass
     [SerializeField] private GameObject animObj;
     [SerializeField] private particleSystemPlayScript AnimPlay;
     public bool abillity = false;
+    private bool wolk = true;
     private bool SpaceBarExplode = true;
     [SerializeField] FollowBirds followBirds;
     [SerializeField] private GameObject particleHandler;
@@ -47,14 +48,20 @@ public class ExplosionForce : BirdClass
             if (followBirds.followBird == 0)
             {
                 Destroy(GameObject.Find("Cloud(Clone)"));
-                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                if (wolk)
+                {
+                    Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                }
                 followBirds.evenBirds.Clear();
                 followBirds.unevenBirds.Pause();
             }
             if (followBirds.followBird == 1)
             {
                 Destroy(GameObject.Find("Cloud(Clone)"));
-                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                if (wolk)
+                {
+                    Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                }
                 followBirds.unevenBirds.Clear();
                 followBirds.evenBirds.Pause();
             }
@@ -68,7 +75,7 @@ public class ExplosionForce : BirdClass
 
         if (collision.gameObject.layer == 8 && startTimer == true || collision.gameObject.layer == 9 && startTimer == true)
         {
-
+            wolk = false;
             StartCoroutine(ExplosionTimer());
 
         }
