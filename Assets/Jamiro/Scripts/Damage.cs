@@ -13,6 +13,9 @@ public class Damage : MonoBehaviour
     [SerializeField] private Animator dead;
     [SerializeField] private particleSystemPlayScript AnimPlay;
     [SerializeField] private ScoreScript scoreScript;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] private AudioClip breakaudio;
+    [SerializeField] private AudioClip damagedAudio;
     private float objectHealt;
     private int index = 0;
     private bool getDamage = false;
@@ -34,9 +37,12 @@ public class Damage : MonoBehaviour
     {
         if(objectHealt <= healtStages[index])
         {
-            
+
              if (index < healtStages.Length)
             {
+              audioSource.clip = damagedAudio;
+              audioSource.Play();
+
 
                 gameObject.GetComponent<SpriteRenderer>().sprite = stagesSprites[index];
                 if (index < healtStages.Length -1)
@@ -52,6 +58,8 @@ public class Damage : MonoBehaviour
             {
                 systems[i].Play();
             }
+            audioSource.clip = breakaudio;
+            audioSource.Play();
             if (!PigAnimationPlay)
             {
                 particleRemover.GetComponent<removeParticles>().removeParticleSystem(systems[0]);
@@ -93,7 +101,7 @@ public class Damage : MonoBehaviour
         if(collision.gameObject.tag == "object")
         {
             objectHealt -= collision.relativeVelocity.magnitude / 2;
-         
+
         }
         if (collision.gameObject.tag == "ground")
         {

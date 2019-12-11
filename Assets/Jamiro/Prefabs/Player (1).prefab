@@ -35,6 +35,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 1770406691810886724}
+  - {fileID: 6851624882715612448}
   m_Father: {fileID: 1770406692293371412}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.9
+  m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -118,11 +119,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf5e8e51d1e36d34a8781989f624c64d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   rb: {fileID: 0}
-  radius: 2
-  power: 5
+  radius: 3
+  power: 1
+  Cloud: {fileID: 6253901451171495483, guid: 864f076738bac5e40a651636ab10b5e0, type: 3}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -130,7 +132,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   explosieAudio: {fileID: 1770406691810886725}
-  explosie: {fileID: 8300000, guid: 3622cde2ca5b16c4f9956bdf62a950b3, type: 3}
+  explosie: {fileID: 8300000, guid: 4719f795b86be964eba069a5720a8220, type: 3}
   explosieTimer: {fileID: 8300000, guid: e76af7118eea4744aac0f8ef06d3415e, type: 3}
   canExplode: 1
   playTimer: 1
@@ -151,9 +153,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e82ca7fb8ad54f03b13300c5cd1005d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   rb: {fileID: 0}
+  vogelAudio: {fileID: 9148539528035255901}
+  vogelLanceer: {fileID: 8300000, guid: 91a1b0219580cd340ac4788032d8de63, type: 3}
+  slingshotPull: {fileID: 8300000, guid: 9f910cdc091074e40aa4f58424a1d830, type: 3}
   lines:
   - {fileID: 0}
   - {fileID: 0}
@@ -161,6 +166,7 @@ MonoBehaviour:
   shot: 0
   sj: {fileID: 0}
   slingRb: {fileID: 0}
+  followBirds: {fileID: 0}
 --- !u!231 &1770406691706948938
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -271,7 +277,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -447,8 +453,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5432146054e6d4d6cb13aa111c788fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   animObj: {fileID: 7323836906887689553}
 --- !u!82 &1770406692293371410
 AudioSource:
@@ -5395,8 +5401,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   child: {fileID: 1770406691706948939}
 --- !u!114 &158488768
 MonoBehaviour:
@@ -5408,8 +5414,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   child: {fileID: 1770406691706948939}
 --- !u!1001 &668562565483487492
 PrefabInstance:

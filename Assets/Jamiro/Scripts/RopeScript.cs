@@ -6,6 +6,7 @@ public class RopeScript : MonoBehaviour
 {
     [SerializeField] GameObject firstLine;
     [SerializeField] GameObject secondLine;
+    
     public GameObject[] birds;
 
 

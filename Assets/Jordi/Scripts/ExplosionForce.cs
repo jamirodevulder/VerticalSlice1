@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ExplosionForce : BirdClass
 {
-    [SerializeField] private float radius = 5.0F; // zorgt voor radius waar hij objecten aantast
-    [SerializeField] private float power = 10.0F; // zorgt voor explosie power
+
+    [SerializeField] private float radius; // zorgt voor radius waar hij objecten aantast
+    [SerializeField] private float power; // zorgt voor explosie power
+    [SerializeField] private GameObject Cloud;
     [SerializeField] private LayerMask obstacleLayer; // layer van obstacels zoals dozen
     [SerializeField] private LayerMask groundLayer; // layer van de vloer
     [SerializeField] private AudioSource explosieAudio; // audio die de explosie af speelt
@@ -19,6 +21,8 @@ public class ExplosionForce : BirdClass
     [SerializeField] private GameObject animObj;
     [SerializeField] private particleSystemPlayScript AnimPlay;
     public bool abillity = false;
+    private bool SpaceBarExplode = true;
+    [SerializeField] FollowBirds followBirds;
     [SerializeField] private GameObject particleHandler;
     Collider2D[] colliders;
     Vector2 explosionPos = new Vector2(0,0);
@@ -27,7 +31,7 @@ public class ExplosionForce : BirdClass
     private void Start()
     {
         //playerRb.AddForce(new Vector2(300*playerRb.mass,45*playerRb.mass));
-       
+
     }
 
     void Update()
@@ -40,8 +44,22 @@ public class ExplosionForce : BirdClass
             if (Input.GetKeyDown(Constante.spacebar)&&canExplode == true  && abillity) // als je op spatie klikt zet hij de playtimer op false zodat hij meteen explodeert
             {
             playTimer = false;
+            if (followBirds.followBird == 0)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+            }
+            if (followBirds.followBird == 1)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                Cloud = Instantiate(Cloud, this.transform.position, this.transform.rotation);
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             StartCoroutine(ExplosionTimer());
-            
+
             }
     }
 
@@ -61,8 +79,20 @@ public class ExplosionForce : BirdClass
 
         if (playTimer == true) // als playtimer true is gaat hij audio spelen en explodeert daar na
         {
+            if (followBirds.followBird == 0)
+            {
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+
+
+            }
+            if (followBirds.followBird == 1)
+            {
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             startTimer = false; // als startTimer false is kan hij niet meer de IEnum kan aan roepen om iets te laten exploderen
-           
+
             boom.SetTrigger("explode");
             yield return new WaitForSeconds(boom.GetCurrentAnimatorStateInfo(0).length);
 
@@ -131,7 +161,7 @@ public class ExplosionForce : BirdClass
                 rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
             }
 
-            
+
             if (upwardsModifier == 0)
             {
                 explodingDirection /= explodingDistance;
@@ -141,7 +171,7 @@ public class ExplosionForce : BirdClass
             {
                 explodingDirection.Normalize();
             }
-            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);            
+            rb.AddForce(Mathf.Lerp(0, explosionForce, (radius / explodingDistance)) * explodingDirection, mode);
         }
 
     }

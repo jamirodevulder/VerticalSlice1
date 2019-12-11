@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc5722ea6e4c18f488aca18fb60cce35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxhealt: 3
   healtStages:
   - 1.5
@@ -4919,8 +4919,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   child: {fileID: 1658968126487777463}
 --- !u!1 &2155154129775874758
 GameObject:
@@ -9686,8 +9686,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   child: {fileID: 1658968126487777463}
 --- !u!1 &2155154130150707532
 GameObject:
@@ -14453,8 +14453,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   child: {fileID: 1658968126487777463}
 --- !u!1 &2155154130774403354
 GameObject:
@@ -14532,5 +14532,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ef9ab749dae7b49bff2e6276d6c1cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
