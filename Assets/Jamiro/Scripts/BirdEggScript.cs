@@ -44,7 +44,14 @@ public class BirdEggScript : BirdClass
                 followBirds.evenBirds.Pause();
             }
             Instantiate(egg, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * 10;
+            if (gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 1, 0) * 10;
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 1, 0) * 10;
+            }
             StartCoroutine(DestroyTimer());
             gameObject.GetComponent<SpriteRenderer>().sprite = pushedEggOut;
            
