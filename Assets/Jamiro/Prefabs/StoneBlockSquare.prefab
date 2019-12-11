@@ -332,9 +332,15 @@ MonoBehaviour:
   - {fileID: 4997169350981643726}
   - {fileID: 2838613167755581111}
   particleRemover: {fileID: 8041808981222951749}
+  PigAnimationPlay: 0
+  dead: {fileID: 0}
+  AnimPlay: {fileID: 0}
+  scoreScript: {fileID: 0}
   audioSource: {fileID: 7247625921744821392}
   breakaudio: {fileID: 8300000, guid: 0b83b8f6569297e4aa55644572ad2e06, type: 3}
   damagedAudio: {fileID: 8300000, guid: 1ae02f3e5138a5a49a5d6c65cd8e8011, type: 3}
+  puntentekstobject: {fileID: 9086856177999361210, guid: 9870f56df8df9bd42ae557816ee8cbdb,
+    type: 3}
 --- !u!61 &2715883741691514551
 BoxCollider2D:
   m_ObjectHideFlags: 0

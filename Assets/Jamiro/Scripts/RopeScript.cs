@@ -13,6 +13,7 @@ public class RopeScript : MonoBehaviour
     private LineRenderer line1;
     private LineRenderer line2;
     private Vector2 middleRange;
+    private int GetIndex;
     
 
     // Start is called before the first frame update
@@ -34,6 +35,8 @@ public class RopeScript : MonoBehaviour
     }
     public void DrawLines()
     {
+
+        
             Vector2 mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float distance = Vector2.Distance(mouseposition, middleRange);
 
@@ -47,6 +50,7 @@ public class RopeScript : MonoBehaviour
             {
                 setlinePostions(mouseposition);
             }
+        
     }
 
     public void setlinePostions(Vector3 positionForLines)
@@ -68,6 +72,7 @@ public class RopeScript : MonoBehaviour
 
         if (birds[birdIndex] != null)
         {
+            GetIndex = birdIndex;
             birds[birdIndex].transform.position = new Vector3(middleRange.x, middleRange.y, -5f);
             birds[birdIndex].GetComponentInChildren<bird>().enabled = true;
             birds[birdIndex].GetComponentInChildren<SpringJoint2D>().enabled = true;

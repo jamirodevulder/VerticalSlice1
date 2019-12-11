@@ -26,6 +26,7 @@ public class ScoreScript : UIScript
 
     private void Awake()
     {
+        
         mainCamera = FindObjectOfType<Camera>();
         path = "Assets/Scenes/Highscore.txt"; //locatie van het highscore.txt bestand
         enemy = GameObject.Find("Enemy");

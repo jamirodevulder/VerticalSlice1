@@ -24,6 +24,7 @@ public class eggExplodeScript : MonoBehaviour
     {
         Vector3 explosionPos = transform.position;  // zorgt er voor dat hij weet van waar hij de explosie moet schieten
         colliders = Physics2D.OverlapCircleAll(explosionPos, radius, obstacleLayer);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1, 0) * 10;
     }
 
 

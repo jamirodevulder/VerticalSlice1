@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         {
             if (birdsposition[index] != null && birdsposition[index].transform.position.x >= -8)
             {
-                print("test");
+
                 CameraMoveToFort();
 
             }
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
             }
         }
-        print(index);
+
         if (index == birdScript.Length && pigDeath < pigs.Length - 1)
         {
 

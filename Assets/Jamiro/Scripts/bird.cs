@@ -15,6 +15,7 @@ public class bird : BirdClass
     private float releaseDelay;
     private float maxDragDistance = 2f;
     public bool shot = false;
+    public bool clickedBird = true;
 
     [SerializeField] private Sprite[] stars;
     [SerializeField] private SpringJoint2D sj;
@@ -46,7 +47,7 @@ public class bird : BirdClass
 
     void Update()
     {
-        if (isPressed)
+        if (isPressed && clickedBird)
         {
             DragBall();
         }
@@ -58,27 +59,47 @@ public class bird : BirdClass
 
         if(gameObject.transform.position.y <= -20f)
         {
+
+
+            if (followBirds.followBird == 0)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                followBirds.evenBirds.Clear();
+                followBirds.unevenBirds.Pause();
+            }
+            if (followBirds.followBird == 1)
+            {
+                Destroy(GameObject.Find("Cloud(Clone)"));
+                followBirds.unevenBirds.Clear();
+                followBirds.evenBirds.Pause();
+            }
             Destroy(this.gameObject);
+
+
+
         }
 
     }
 
     private void DragBall()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float distance = Vector2.Distance(mousePosition, slingRb.position);
-
-        if (distance > maxDragDistance)
+        if (clickedBird)
         {
-            Vector2 direction = (mousePosition - slingRb.position).normalized;
-            rb.position = slingRb.position + direction * maxDragDistance;
-        }
-        else
-        {
-            rb.position = mousePosition;
-        }
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float distance = Vector2.Distance(mousePosition, slingRb.position);
 
-        ropes.DrawLines();
+            if (distance > maxDragDistance)
+            {
+                Vector2 direction = (mousePosition - slingRb.position).normalized;
+                rb.position = slingRb.position + direction * maxDragDistance;
+            }
+            else
+            {
+                rb.position = mousePosition;
+            }
+
+            ropes.DrawLines();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,16 +113,20 @@ public class bird : BirdClass
     }
     private void OnMouseDown()
     {
-        vogelAudio.Play();
-        rb.constraints = RigidbodyConstraints2D.None;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        isPressed = true;
-        rb.isKinematic = true;
-
+        if (clickedBird)
+        {
+            
+            vogelAudio.Play();
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isPressed = true;
+            rb.isKinematic = true;
+        }
     }
 
     private void OnMouseUp()
     {
+        
         vogelAudio.clip = vogelLanceer;
         vogelAudio.Play();
         if (followBirds.followBird == 0)
@@ -113,7 +138,10 @@ public class bird : BirdClass
             followBirds.evenBirds.Play();
         }
         isPressed = false;
-        StartCoroutine(Release());
+        if (clickedBird)
+        {
+            StartCoroutine(Release());
+        }
         rb.isKinematic = false;
         shot = true;
         if(kip != null)
@@ -124,7 +152,7 @@ public class bird : BirdClass
         {
             bom.abillity = true;
         }
-
+        clickedBird = false;
 
     }
 

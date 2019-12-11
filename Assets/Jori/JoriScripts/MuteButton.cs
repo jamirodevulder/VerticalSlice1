@@ -11,7 +11,7 @@ public class MuteButton : UIScript
     private void Awake()
     {
         AddListener(MuteKnopClicked);
-        music = mainCamera.GetComponent<AudioSource>();
+   
         musicMuted = false;
         buttonText = clickableButton.GetComponentInChildren<Text>();
         buttonText.text = "";
@@ -23,11 +23,13 @@ public class MuteButton : UIScript
         {
             case true:
                 musicMuted = false;
-                music.mute = false;
+                AudioListener.pause = true;
+                AudioListener.volume = 0;
                 break;
             case false:
                 musicMuted = true;
-                music.mute = true;
+                AudioListener.pause = false;
+                AudioListener.volume = 1;
                 break;
         }
     }

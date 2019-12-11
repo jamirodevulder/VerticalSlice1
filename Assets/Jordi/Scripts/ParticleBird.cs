@@ -24,7 +24,7 @@ public class ParticleBird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(thisPSEmission.rateOverTime);
+
         //particle size
         
         thisPSMain.startSize = particleSize;

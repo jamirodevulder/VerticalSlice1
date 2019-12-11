@@ -18,19 +18,25 @@ public class FollowBirds : MonoBehaviour
     }
     void Update()
     {
-
-        if (followBird <= 0)
+        try
         {
-            print(gameManager.index);
-            unevenBirds.transform.position = slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>().transform.position;
+            if (followBird <= 0 && slingshot.birds[gameManager.index] != null && slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>() != null)
+            {
+                print(gameManager.index);
+                unevenBirds.transform.position = slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>().transform.position;
+            }
+            if (followBird == 1 && slingshot.birds[gameManager.index] != null && slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>() != null)
+            {
+                evenBirds.transform.position = slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>().transform.position;
+            }
+            if (followBird >= 2)
+            {
+                followBird = 0;
+            }
         }
-        if (followBird == 1)
+        catch(System.IndexOutOfRangeException ex)
         {
-            evenBirds.transform.position = slingshot.birds[gameManager.index].GetComponentInChildren<Rigidbody2D>().transform.position;
-        }
-        if (followBird >= 2)
-        {
-            followBird = 0;
+            print("lol");
         }
     }
 }

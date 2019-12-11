@@ -35,7 +35,6 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 1770406691810886724}
-  - {fileID: 6851624882715612448}
   m_Father: {fileID: 1770406692293371412}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,8 +118,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf5e8e51d1e36d34a8781989f624c64d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   rb: {fileID: 0}
   radius: 3
   power: 1
@@ -141,6 +140,8 @@ MonoBehaviour:
   boomtime: {fileID: 7400000, guid: 6e4a4559253b4614bad160e500590e2c, type: 2}
   animObj: {fileID: 0}
   AnimPlay: {fileID: 1770406692293371413}
+  abillity: 0
+  followBirds: {fileID: 0}
   particleHandler: {fileID: 1770406692293371411}
   playerRb: {fileID: 1770406691706948942}
 --- !u!114 &1770406691706948941
@@ -153,10 +154,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e82ca7fb8ad54f03b13300c5cd1005d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  vogelAudio: {fileID: 9148539528035255901}
+  vogelAudio: {fileID: 1770406691810886725}
   vogelLanceer: {fileID: 8300000, guid: 91a1b0219580cd340ac4788032d8de63, type: 3}
   slingshotPull: {fileID: 8300000, guid: 9f910cdc091074e40aa4f58424a1d830, type: 3}
   lines:
@@ -164,8 +165,11 @@ MonoBehaviour:
   - {fileID: 0}
   isPressed: 0
   shot: 0
+  stars: []
   sj: {fileID: 0}
   slingRb: {fileID: 0}
+  kip: {fileID: 0}
+  bom: {fileID: 0}
   followBirds: {fileID: 0}
 --- !u!231 &1770406691706948938
 SpringJoint2D:
@@ -277,7 +281,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -292,7 +296,7 @@ GameObject:
   - component: {fileID: 1770406691810886724}
   - component: {fileID: 1770406691810886725}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: VogelAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,8 +457,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5432146054e6d4d6cb13aa111c788fa1, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   animObj: {fileID: 7323836906887689553}
 --- !u!82 &1770406692293371410
 AudioSource:
@@ -5401,8 +5405,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   child: {fileID: 1770406691706948939}
 --- !u!114 &158488768
 MonoBehaviour:
@@ -5414,8 +5418,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536dd29d43c4049eb96b8981837077a2, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   child: {fileID: 1770406691706948939}
 --- !u!1001 &668562565483487492
 PrefabInstance:

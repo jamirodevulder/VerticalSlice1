@@ -44,8 +44,10 @@ public class BirdEggScript : BirdClass
                 followBirds.evenBirds.Pause();
             }
             Instantiate(egg, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(1,1,0) * 10;
             StartCoroutine(DestroyTimer());
             gameObject.GetComponent<SpriteRenderer>().sprite = pushedEggOut;
+           
         }
 
     }
@@ -56,20 +58,21 @@ public class BirdEggScript : BirdClass
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
             wait = true;
-            eggGemaakt = false;
+            
             StartCoroutine(DestroyTimer());
-            if (followBirds.followBird == 0)
+            if (followBirds.followBird == 0 && eggGemaakt )
             {
                 Destroy(GameObject.Find("Cloud(Clone)"));
                 followBirds.evenBirds.Clear();
                 followBirds.unevenBirds.Pause();
             }
-            if (followBirds.followBird == 1)
+            if (followBirds.followBird == 1 && eggGemaakt)
             {
                 Destroy(GameObject.Find("Cloud(Clone)"));
                 followBirds.unevenBirds.Clear();
                 followBirds.evenBirds.Pause();
             }
+            eggGemaakt = false;
 
         }
     }
