@@ -127,17 +127,18 @@ public class bird : BirdClass
     {
         
         
-        if (followBirds.followBird == 0)
-        {
-            followBirds.unevenBirds.Play();
-        }
-        if (followBirds.followBird == 1)
-        {
-            followBirds.evenBirds.Play();
-        }
+        
         isPressed = false;
         if (clickedBird)
         {
+            if (followBirds.followBird == 0)
+            {
+                followBirds.unevenBirds.Play();
+            }
+            if (followBirds.followBird == 1)
+            {
+                followBirds.evenBirds.Play();
+            }
             StartCoroutine(Release());
             shot = true;
             vogelAudio.clip = vogelLanceer;
