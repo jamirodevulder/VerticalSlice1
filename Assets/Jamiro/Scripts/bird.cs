@@ -115,7 +115,6 @@ public class bird : BirdClass
     {
         if (clickedBird)
         {
-            
             vogelAudio.Play();
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -127,8 +126,7 @@ public class bird : BirdClass
     private void OnMouseUp()
     {
         
-        vogelAudio.clip = vogelLanceer;
-        vogelAudio.Play();
+        
         if (followBirds.followBird == 0)
         {
             followBirds.unevenBirds.Play();
@@ -141,9 +139,12 @@ public class bird : BirdClass
         if (clickedBird)
         {
             StartCoroutine(Release());
+            shot = true;
+            vogelAudio.clip = vogelLanceer;
+            vogelAudio.Play();
         }
         rb.isKinematic = false;
-        shot = true;
+        
         if(kip != null)
         {
             kip.abillity = true;
@@ -158,8 +159,12 @@ public class bird : BirdClass
 
     private IEnumerator Release()
     {
+
+        clickedBird = false;
         yield return new WaitForSeconds(releaseDelay);
+        GameObject.Find("Catapult").GetComponent<RopeScript>().returnLines();
         sj.enabled = false;
         shot = false;
+        
     }
 }
