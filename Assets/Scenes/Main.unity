@@ -30075,16 +30075,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
         type: 3}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
-      propertyPath: power
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
       propertyPath: followBirds
       value: 
       objectReference: {fileID: 748715884}

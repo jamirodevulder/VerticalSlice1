@@ -28,6 +28,7 @@ public class BirdEggScript : BirdClass
     {
         if(Input.GetKeyDown(KeyCode.Space) && eggGemaakt && abillity)
         {
+            wait = true;
             eggGemaakt = false;
             if (followBirds.followBird == 0)
             {
