@@ -14,7 +14,7 @@ public class ParticleBird : MonoBehaviour
 
     private void Awake()
     {
-        emissionRate = 10f;
+        emissionRate = 30f;
         thisParticle = GetComponent<ParticleSystem>();
         thisPSMain = thisParticle.main;
         thisPSEmission = thisParticle.emission;
@@ -36,9 +36,9 @@ public class ParticleBird : MonoBehaviour
 
     private IEnumerator EmitParitcle()
     {
-        if (particleSize < 0.4f)
+        if (particleSize < 0.2f)
         {
-            particleSize += 0.1f;
+            particleSize += 0.05f;
             yield return new WaitForSeconds(1 / emissionRate);
         }
         else

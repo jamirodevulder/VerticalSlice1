@@ -3414,16 +3414,6 @@ PrefabInstance:
       objectReference: {fileID: 567634591}
     - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
         type: 3}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
-      propertyPath: power
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
       propertyPath: followBirds
       value: 
       objectReference: {fileID: 748715884}
@@ -16927,7 +16917,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -21619,16 +21609,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
         type: 3}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
-      propertyPath: power
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1770406691706948940, guid: a5803550bda35e24f86b5fc166a78070,
-        type: 3}
       propertyPath: followBirds
       value: 
       objectReference: {fileID: 748715884}
@@ -22630,7 +22610,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
