@@ -15,6 +15,9 @@ public class BirdEggScript : BirdClass
     [SerializeField] private Sprite pushedEggOut;
     [SerializeField] FollowBirds followBirds;
     [SerializeField] private GameObject Cloud;
+    [SerializeField] private ParticleSystem veer1;
+    [SerializeField] private ParticleSystem veer2;
+
     private GameObject cloud;
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,9 @@ public class BirdEggScript : BirdClass
     {
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
+
+
+
             wait = true;
             
             StartCoroutine(DestroyTimer());

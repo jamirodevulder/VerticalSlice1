@@ -23,6 +23,10 @@ public class bird : BirdClass
     [SerializeField] BirdEggScript kip;
     [SerializeField] ExplosionForce bom;
     [SerializeField]  private FollowBirds followBirds;
+    [SerializeField] private ParticleSystem veer1;
+    [SerializeField] private ParticleSystem veer2;
+    [SerializeField] private ParticleSystem veer3;
+
 
 
 
@@ -106,7 +110,9 @@ public class bird : BirdClass
     {
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
-
+            veer1.Play();
+            veer2.Play();
+            veer3.Play();
 
             rb.constraints = RigidbodyConstraints2D.None;
         }

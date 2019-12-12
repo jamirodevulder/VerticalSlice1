@@ -15,6 +15,7 @@ public class PauseButton : UIScript
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private Text winscreentext;
+    [SerializeField] private ScoreScript score;
 
     private void Awake()
     {
@@ -61,6 +62,13 @@ public class PauseButton : UIScript
             buttonGameObjects[5].SetActive(true);
             nextButton.SetActive(false);
             
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            float randomscore = Random.Range(29583, 100000);
+            score.AddScore(randomscore);
+            gameWon = true;
+
         }
     }
 
