@@ -25,16 +25,6 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 dis = transform.position - fortPositionX;
         float disMag = dis.magnitude;
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            
-            StartCoroutine(MoveToFort());
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            print("test");
-            StartCoroutine(MoveToBird());
-        }
     }
      
 

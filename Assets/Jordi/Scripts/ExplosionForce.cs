@@ -88,6 +88,7 @@ public class ExplosionForce : BirdClass
         {
             if (followBirds.followBird == 0)
             {
+                Destroy(GameObject.Find("Cloud(Clone)"));
                 followBirds.evenBirds.Clear();
                 followBirds.unevenBirds.Pause();
 
@@ -95,6 +96,7 @@ public class ExplosionForce : BirdClass
             }
             if (followBirds.followBird == 1)
             {
+                Destroy(GameObject.Find("Cloud(Clone)"));
                 followBirds.unevenBirds.Clear();
                 followBirds.evenBirds.Pause();
             }
